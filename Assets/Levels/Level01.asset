@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6150f19b41020940946d4ecfd0e9e81, type: 3}
+  m_Name: Level01
+  m_EditorClassIdentifier: 
+  wavesJSON: {fileID: 4900000, guid: 88952599f2e76b0409d4716eb61d29d4, type: 3}
+  heroes:
+  - {fileID: 2000242777836987000, guid: 8ed362aabe27067479e5ef9ec704c599, type: 3}
+  - {fileID: 7435675352876882702, guid: 8de68d9028b422248a71c868af2adf37, type: 3}
+  - {fileID: 1242613579413442305, guid: 2b2cd020e4b92ac4d87c33239051d499, type: 3}
+  spawnRate: 5

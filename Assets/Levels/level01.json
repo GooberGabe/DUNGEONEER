@@ -1,0 +1,23 @@
+{
+    "waves":
+    [
+        {
+            "heroes":
+            [
+                "Knight","Knight","Knight","Rogue","Rogue","Rogue","Knight","Rogue","Knight"
+            ]
+        },
+        {
+            "heroes":
+            [
+                "Rogue","Rogue","Knight","Knight","Rogue","Rogue","Knight","Knight","Rogue","Rogue"
+            ]
+        },
+        {
+            "heroes":
+            [
+                "Knight","Knight","Knight","Knight","Knight","Knight","Rogue","Rogue","Rogue","Rogue","Rogue","Rogue","Golden Knight"
+            ]
+        }
+    ]
+}
