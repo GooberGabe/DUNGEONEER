@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Turret : DynamicEntity
 {
-    protected int cooldownCounter;
-    public int cooldownTime;
     public override EntityType entityType => EntityType.Turret;
 
     public override string TextDisplay()
@@ -22,10 +20,10 @@ public class Turret : DynamicEntity
         cooldownCounter = cooldownTime;
     }
 
-    protected List<Entity> GetValidTargets()
+    protected override List<Entity> GetValidTargets()
     {
         return entitiesInRange.Where(x => detectedTypes.Contains(x.entityType)).ToList().OrderBy(
-            x => -Vector3.Distance(transform.position, x.transform.position)).ToList();
+            x => Vector3.Distance(transform.position, x.transform.position) * (targetClose ? -1 : 1)).ToList();
     }
 
     private void LockTarget()
@@ -55,10 +53,6 @@ public class Turret : DynamicEntity
     protected override void Update()
     {
         base.Update();
-        if (cooldownCounter > 0)
-        {
-            cooldownCounter--;
-        }
 
         LockTarget();
 

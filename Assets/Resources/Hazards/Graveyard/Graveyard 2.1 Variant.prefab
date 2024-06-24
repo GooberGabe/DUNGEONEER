@@ -736,7 +736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4749731524416747532, guid: 102a2eaa460220e488966d63ac754561, type: 3}
       propertyPath: cost
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4749731524416747532, guid: 102a2eaa460220e488966d63ac754561, type: 3}
       propertyPath: alwaysSpawn

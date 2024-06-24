@@ -10,6 +10,7 @@ public class InterfaceManager : MonoBehaviour
     public Entity selectedEntity;
     public UpgradeButton selectedUpgrade;
     public UpgradePanel leftPanel;
+    public ConstructionPanel constructionPanel;
     public TextMeshProUGUI roundCount;
     public TextMeshProUGUI goldCount;
     public TextMeshProUGUI costCount;
@@ -33,18 +34,21 @@ public class InterfaceManager : MonoBehaviour
     private void Start()
     {
         instance = this;
-        startModule = GameManager.instance.GetGrid().startModule;
+        startModule = GameManager.instance.GetGrid().startModules[0];
         messageText.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        roundCount.text = (startModule.GetRound()+1).ToString();
+        // -- Round count & Gold count
+        roundCount.text = (GameManager.instance.round).ToString();
         goldCount.text = GameManager.instance.gold.ToString()+" Gold";
 
+        // -- Cost preview
         costCount.gameObject.SetActive(currentPreview != null);
-        if (currentPreview != null) costCount.text = "Costs " + currentPreview.cost.ToString() + " Gold";
+        if (currentPreview != null && currentPreview.cost > 0) costCount.text = "Costs " + currentPreview.cost.ToString() + " Gold";
 
+        // -- Defeat message
         counter++;
         if (!GameManager.instance.isAlive)
         {
@@ -56,13 +60,14 @@ public class InterfaceManager : MonoBehaviour
             messageText.gameObject.SetActive(false);
         }
 
-        Vector2 hiddenPos = new Vector2(-140, 0);
-        float time = 0.03f;
-        RectTransform rectTransform = leftPanel.GetComponent<RectTransform>();
+        // -- LeftPanel
+
 
         if (selectedEntity != null)
         {
-            rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, Vector2.zero, time);
+            leftPanel.gameObject.SetActive(true);
+            constructionPanel.gameObject.SetActive(false);
+            leftPanel.Show();
 
             leftPanel.title.text = selectedEntity.entityName;
             leftPanel.description.text = selectedEntity.TextDisplay();
@@ -70,7 +75,7 @@ public class InterfaceManager : MonoBehaviour
             if (selectedUpgrade == null)
             {
                 leftPanel.sellButton.gameObject.SetActive(selectedEntity.entityType != EntityType.Hero && selectedEntity.cost > 0);
-                leftPanel.sellButton.interactable = !GameManager.instance.GetGrid().startModule.playRound;
+                leftPanel.sellButton.interactable = !GameManager.instance.playRound;
                 leftPanel.sellButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Sell (" + (selectedEntity.cost - 10).ToString() + " Gold)";
                 leftPanel.sellButton.GetComponent<Image>().color = sellColor;
                 leftPanel.details.text = "";
@@ -85,12 +90,24 @@ public class InterfaceManager : MonoBehaviour
                 leftPanel.sellButton.GetComponent<Image>().color = upgradeColor;
                 leftPanel.details.text = upgrade.upgradeTree.FindNodeWithEntity(upgrade).description;
             }
+
+        }
+        else if (GameManager.instance.round == 0)
+        {
+            constructionPanel.gameObject.SetActive(true);
+            leftPanel.gameObject.SetActive(false);
+            leftPanel.Show();
+
         }
         else
         {
-            rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, hiddenPos, time);
+            leftPanel.Hide();
         }
 
+        RectTransform rectTransform = leftPanel.GetComponent<RectTransform>();
+        constructionPanel.transform.GetComponent<RectTransform>().anchoredPosition = rectTransform.anchoredPosition;
+
+        // -- Tile Placement
         int numTiles = GameManager.instance.tilesPlaced;
         int maxTiles = GameManager.instance.maxTiles;
         int price = GameManager.instance.GetTilePrice();
@@ -98,6 +115,7 @@ public class InterfaceManager : MonoBehaviour
         if (price > 0) tilePlacementText.color = Color.red;
         else tilePlacementText.color = Color.white;
 
+        // -- Play Button
         playRoundButton.interactable = GameManager.instance.isValidPath;
 
     }
@@ -204,14 +222,13 @@ public class InterfaceManager : MonoBehaviour
     {
         if (selectedEntity != null)
         {
-            Destroy(selectedEntity.gameObject);
-            GameManager.instance.gold += selectedEntity.cost - 10;
+            selectedEntity.Sell();
         }
     }
 
     public void StartRound()
     {
-        startModule.NewRound();
+        GameManager.instance.NewRound();
     }
 
     public void Message(string message, int time) 

@@ -1130,6 +1130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2573507809332447834, guid: 74f9589a3d7a1e5488ed0be35649629a, type: 3}
+    - {fileID: -3581312552429885697, guid: 74f9589a3d7a1e5488ed0be35649629a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1700067783968851665, guid: 74f9589a3d7a1e5488ed0be35649629a, type: 3}
@@ -1196,13 +1197,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walls: {fileID: 6891023565721759017}
-  arches: {fileID: 8988626477216926436}
-  bases: {fileID: 4598869808698715072}
-  columns: {fileID: 1488970498604085534}
   gridTile: {fileID: 0}
   hazard: {fileID: 0}
+  wasChecked: 0
   adjacents: []
+  openings: 01010101
   preventPlacement: 0
+  columns: {fileID: 1488970498604085534}
+  arches: {fileID: 8988626477216926436}
+  bases: {fileID: 4598869808698715072}
   dragonFab: {fileID: 7940779105702939435, guid: 70b20113dc714ba4f83de0dd9c8c51f5, type: 3}
   dragonRef: {fileID: 0}
 --- !u!4 &4048492547526894734 stripped

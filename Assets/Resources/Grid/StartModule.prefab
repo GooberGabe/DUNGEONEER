@@ -328,6 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 3779788808345873390, guid: 95147944507623c44b87ab4a4b69b157, type: 3}
     m_RemovedComponents:
     - {fileID: 2573507809332447834, guid: 74f9589a3d7a1e5488ed0be35649629a, type: 3}
+    - {fileID: -3581312552429885697, guid: 74f9589a3d7a1e5488ed0be35649629a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4876882916074289814, guid: 74f9589a3d7a1e5488ed0be35649629a, type: 3}
@@ -365,15 +366,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walls: {fileID: 8622106649290271758}
-  arches: {fileID: 6104683259871202243}
-  bases: {fileID: 1717070498276010727}
-  columns: {fileID: 4372951237874626617}
   gridTile: {fileID: 0}
   hazard: {fileID: 0}
+  wasChecked: 0
   adjacents: []
+  openings: 
   preventPlacement: 0
-  playRound: 0
+  columns: {fileID: 4372951237874626617}
+  arches: {fileID: 6104683259871202243}
+  bases: {fileID: 1717070498276010727}
+  waveNum: -1
+  allHeroesSpawned: 0
   pathfinder: {fileID: 3651491919294134097, guid: af2d26b016640fa459a4f56a7168055b, type: 3}
+  archway: 0
 --- !u!4 &1072762764389496402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6523212748345268134, guid: 74f9589a3d7a1e5488ed0be35649629a, type: 3}

@@ -21,11 +21,16 @@ public class Monster : Creature
         NavigationBehavior();
     }
 
+    protected override List<Entity> GetValidTargets()
+    {
+        return entitiesInRange.Where(x => x.entityType == EntityType.Hero || x.entityType == EntityType.Monster).ToList().OrderBy(
+            x => -Vector3.Distance(transform.position, x.transform.position) - ((Creature)x).foes.Count).ToList();
+    }
+
     protected override void NavigationBehavior()
     {
         // Filter out non-creatures and sort the remaining entities based on distance and numFoes
-        List<Entity> validTargets = entitiesInRange.Where(x => x.entityType == EntityType.Hero || x.entityType == EntityType.Monster).ToList().OrderBy(
-            x => -Vector3.Distance(transform.position,x.transform.position) - ((Creature)x).foes.Count).ToList();
+        List<Entity> validTargets = GetValidTargets();
 
         if (validTargets.Count > 0)
         {

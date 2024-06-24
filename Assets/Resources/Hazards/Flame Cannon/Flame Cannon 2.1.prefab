@@ -304,6 +304,10 @@ PrefabInstance:
       value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: cost
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: projectile
       value: 
       objectReference: {fileID: 2656373306640303753, guid: a3687df4d97a9eb46951f757dd7747cf, type: 3}
@@ -329,7 +333,7 @@ PrefabInstance:
       objectReference: {fileID: 2295574820676442917}
     - target: {fileID: 6992433605001656919, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: m_Name
-      value: Flame Cannon 2.1 Variant
+      value: Flame Cannon 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 7656627325585383661, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: m_LocalPosition.x

@@ -388,20 +388,23 @@ MonoBehaviour:
   maxHitPoints: 80
   entityName: Golden Knight
   upgradeName: 
-  cost: 40
+  cost: 10
   detectedTypes: 
   upgradeTree: {fileID: 0}
   mainDestination: {fileID: 0}
+  targetClose: 1
   holdPosition: {fileID: 0}
   firePosition:
   - {fileID: 0}
   projectile: {fileID: 0}
+  cooldownTime: 0
   strength: 6
   speed: 5
   size: 0
   behavior: 0
   subDestination: {fileID: 0}
   isAlive: 1
+  isMoving: 0
   foes: []
 --- !u!195 &213244657868524330
 NavMeshAgent:

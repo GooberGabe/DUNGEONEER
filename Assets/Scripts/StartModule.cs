@@ -1,25 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class StartModule : Module
+public class StartModule : FlexModule
 {
-    private LevelData levelData;
+    private LevelWaves level;
     private List<List<GameObject>> heroSpawns;
     private int counter = 0;
-    private int waveNum = -1;
+    public int waveNum = -1;
     private int spawnNum = 0;
-    public bool playRound = false;
+    public bool allHeroesSpawned = false;
     public GameObject pathfinder;
+    public int archway;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         preventPlacement = true;
-        levelData = GameManager.instance.GetLevelData();
-        heroSpawns = GameManager.instance.GetComponent<LevelReader>().Read(levelData.wavesJSON);
+        level = GameManager.instance.GetComponent<LevelReader>().Read(this);
+        heroSpawns = GameManager.instance.GetComponent<LevelReader>().GetWaves(level);
         GameManager.instance.GetGrid().GetComponent<DungeonBuilder>().BakeNavMesh();
+
         SpawnPathfinder();
+    
+        openings = new bool[4] { false, false, false, false };
+        openings[archway] = true;
+    
     }
 
     public int GetRound()
@@ -30,11 +38,11 @@ public class StartModule : Module
     private void Update()
     {
         // If during round
-        if (playRound)
+        if (GameManager.instance.playRound)
         {
             counter++;
             
-            if (counter % ((11 - levelData.spawnRate) * 70) == 0 && waveNum < heroSpawns.Count)
+            if (counter % ((11 - level.waves[waveNum].spawnRate) * 50) == 0 && waveNum < heroSpawns.Count)
             {
                 if (spawnNum < heroSpawns[waveNum].Count)
                 {
@@ -44,14 +52,39 @@ public class StartModule : Module
                 }
             }
             // If all heroes have been spawned and all heroes have been killed
-            if (spawnNum >= heroSpawns[waveNum].Count && GameManager.instance.totalHeroes == 0)
+            if (spawnNum >= heroSpawns[waveNum].Count)
             {
-                playRound = false;
-                InterfaceManager.instance.Message("Round Completed!", 240);
-                GameManager.instance.gold += waveNum * 30;
+                allHeroesSpawned = true;
+            }
+
+        }
+        
+    }
+
+    public override void Assemble()
+    {
+        base.Assemble();
+        for (int i = 0; i < 4; i++)
+        {
+            if (i != archway)
+            {
+                gridTile.adjacents[i].validPlacement = false;
+            }
+            else
+            {
+                walls.GetChild(i).gameObject.SetActive(false);
+                arches.GetChild(i).gameObject.SetActive(true);
             }
         }
         
+    }
+
+    public void NewRound()
+    {
+        waveNum++;
+        spawnNum = 0;
+        counter = 0;
+        allHeroesSpawned = false;
     }
 
     private void SpawnHero(GameObject heroPrefab)
@@ -65,18 +98,6 @@ public class StartModule : Module
     private void SpawnPathfinder()
     {
         Pathfinder p = Instantiate(pathfinder, transform.position, Quaternion.identity).GetComponent<Pathfinder>();
-    }
-
-    public void NewRound()
-    {
-        // If in between rounds
-        if (!playRound)
-        {
-            waveNum++;
-            spawnNum = 0;
-            counter = 0;
-            playRound = true;
-        }
     }
 
 }

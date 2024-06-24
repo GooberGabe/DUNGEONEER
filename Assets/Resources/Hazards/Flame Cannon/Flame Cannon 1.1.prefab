@@ -218,7 +218,7 @@ MonoBehaviour:
   maxHitPoints: 1
   entityName: Flame Cannon
   upgradeName: Stabilizers
-  cost: 100
+  cost: 120
   detectedTypes: 03000000
   upgradeTree: {fileID: 11400000, guid: a7595d934825ad943b8f21a8ecf321bd, type: 2}
   mainDestination: {fileID: 0}

@@ -13,27 +13,35 @@ public class LevelWaves
 [Serializable]
 public class Wave
 {
+    public int spawnRate;
     public List<string> heroes;
 }
 
 public class LevelReader : MonoBehaviour
 {
-    public LevelData levelData;
+    public List<TextAsset> levelData;
     private Dictionary<string, GameObject> jsonKey = new Dictionary<string, GameObject>();
+
+    public LevelWaves Read(StartModule start)
+    {
+        TextAsset json = levelData[GameManager.instance.GetGrid().startModules.IndexOf(start)];
+        string jsonString = json.ToString();
+        LevelWaves wavesTxt = JsonUtility.FromJson<LevelWaves>(jsonString);
+
+        return wavesTxt;
+    }
 
     private void Start()
     {
-        for (int i = 0; i < levelData.heroes.Length; i++)
+        GameObject[] heroes = Resources.LoadAll<GameObject>("Heroes");
+        foreach (GameObject hero in heroes)
         {
-            jsonKey.Add(levelData.heroes[i].GetComponent<Hero>().entityName, levelData.heroes[i]);
+            jsonKey.Add(hero.name, hero);
         }
     }
 
-    public List<List<GameObject>> Read(TextAsset file)
+    public List<List<GameObject>> GetWaves(LevelWaves wavesTxt)
     {
-        string jsonString = levelData.wavesJSON.ToString();
-        LevelWaves wavesTxt = JsonUtility.FromJson<LevelWaves>(jsonString);
-
         List<List<GameObject>> waves = new List<List<GameObject>>();
         for (int i = 0; i < wavesTxt.waves.Count; i++)
         {
@@ -47,6 +55,14 @@ public class LevelReader : MonoBehaviour
         return waves;
     }
 }
+
+
+
+
+
+
+
+
 
 
 

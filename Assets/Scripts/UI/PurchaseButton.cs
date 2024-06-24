@@ -38,7 +38,9 @@ public class PurchaseButton : MonoBehaviour
             GameObject prev = Instantiate(previewFab);
             PlacementPreview pp = prev.GetComponent<PlacementPreview>();
             pp.placement = purchaseFab;
+            pp.buttonRef = gameObject;
             ui.currentPreview = pp;
+
         }
     }
 }

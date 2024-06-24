@@ -16,6 +16,18 @@ public class Hero : Creature
     {
         base.Start();
         GameManager.instance.totalHeroes++;
+        Skin();
+    }
+
+    private void Skin()
+    {
+        foreach (Material mat in gameObject.GetComponentInChildren<SkinnedMeshRenderer>().materials)
+        {
+            if (mat.name.Contains("Skin"))
+            {
+                mat.color = GameManager.instance.skinTones[Random.Range(0, GameManager.instance.skinTones.Length - 1)];
+            }
+        }
     }
 
     protected override void NavigationBehavior()

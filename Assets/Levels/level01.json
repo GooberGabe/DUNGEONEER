@@ -2,22 +2,77 @@
     "waves":
     [
         {
+            "spawnRate":4,
             "heroes":
             [
-                "Knight","Knight","Knight","Rogue","Rogue","Rogue","Knight","Rogue","Knight"
+                "Guard","Guard","Guard","Guard","Guard","Guard","Guard","Guard","Knight"
             ]
         },
         {
+            "spawnRate":4,
             "heroes":
             [
-                "Rogue","Rogue","Knight","Knight","Rogue","Rogue","Knight","Knight","Rogue","Rogue"
+                "Knight","Guard","Knight","Guard","Knight","Guard","Knight","Guard","Knight","Guard"
             ]
         },
         {
+            "spawnRate":5,
             "heroes":
             [
-                "Knight","Knight","Knight","Knight","Knight","Knight","Rogue","Rogue","Rogue","Rogue","Rogue","Rogue","Golden Knight"
+                "Guard","Guard","Rogue","Rogue","Guard","Guard","Knight","Knight","Knight","Knight","Rogue","Rogue","Rogue"
             ]
-        }
+        },
+        {
+            "spawnRate":5,
+            "heroes":
+            [
+                "Knight","Rogue","Guard","Knight","Rogue","Guard","Knight","Rogue","Guard","Knight","Rogue","Guard","Knight","Golden Knight"
+            ]
+        },
+        {
+            "spawnRate":8,
+            "heroes":
+            [
+                "Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue"
+            ]
+        },
+        {
+            "spawnRate": 5,
+            "heroes": [
+              "Rogue", "Guard", "Knight", "Rogue", "Guard",
+              "Knight", "Rogue", "Knight", "Guard", "Rogue",
+              "Knight", "Barbarian", "Rogue", "Knight", "Guard",
+              "Rogue", "Knight", "Barbarian", "Rogue", "Knight",
+              "Guard", "Rogue", "Knight", "Barbarian", "Knight",
+              "Rogue", "Knight", "Barbarian", "Rogue", "Golden Knight"
+            ]
+        },
+        {
+            "spawnRate": 5,
+            "heroes": [
+              "Knight", "Rogue", "Barbarian", "Knight", "Rogue",
+              "Barbarian", "Knight", "Rogue", "Golden Knight", "Knight",
+              "Barbarian", "Rogue", "Knight", "Barbarian", "Rogue",
+              "Knight", "Golden Knight", "Rogue", "Barbarian", "Knight",
+              "Rogue", "Barbarian", "Knight", "Golden Knight", "Barbarian",
+              "Knight", "Rogue", "Barbarian", "Golden Knight", "Barbarian",
+              "Knight", "Rogue", "Barbarian", "Golden Knight", "Barbarian"
+            ]
+        },
+        {
+            "spawnRate": 6,
+            "heroes": [
+              "Barbarian", "Knight", "Rogue", "Barbarian", "Knight",
+              "Golden Knight", "Barbarian", "Rogue", "Knight", "Barbarian",
+              "Golden Knight", "Rogue", "Barbarian", "Knight", "Golden Knight",
+              "Barbarian", "Rogue", "Knight", "Golden Knight", "Barbarian",
+              "Knight", "Golden Knight", "Barbarian", "Rogue", "Golden Knight",
+              "Barbarian", "Knight", "Golden Knight", "Barbarian", "Golden Knight",
+              "Knight", "Golden Knight", "Barbarian", "Golden Knight", "Golden Knight",
+              "Barbarian", "Knight", "Golden Knight", "Golden Knight", "Golden Knight"
+            ]
+          }
+        
+        
     ]
 }

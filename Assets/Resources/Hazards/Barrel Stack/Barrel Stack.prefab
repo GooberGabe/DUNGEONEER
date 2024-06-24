@@ -61,6 +61,7 @@ MonoBehaviour:
   detectedTypes: 03000000
   upgradeTree: {fileID: 11400000, guid: 10ca26cf652d47749a2817d83ff16d68, type: 2}
   mainDestination: {fileID: 0}
+  targetClose: 0
   holdPosition: {fileID: 0}
   firePosition:
   - {fileID: 6497637968240110430}

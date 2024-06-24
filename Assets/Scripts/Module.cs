@@ -1,85 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Module : MonoBehaviour
 {
     public Transform walls;
-    public Transform arches;
-    public Transform bases;
-    public Transform columns;
 
     public GridTile gridTile;
-    public Hazard hazard;
+    public Entity hazard;
 
-    protected bool wasChecked = false;
-    public GridTile[] adjacents;
+    [HideInInspector]
+    public bool wasChecked = false;
+
+    public bool[] openings;
     public bool preventPlacement = false;
 
-    /// <summary>
-    /// Build this Module based on adjacencies with other Modules.
-    /// </summary>
-    public void Assemble()
+    public virtual void Assemble()
     {
         wasChecked = true;
-        adjacents = new GridTile[4]
-        { GetAdjacentTile(0,1), GetAdjacentTile(1,0), GetAdjacentTile(0,-1), GetAdjacentTile(-1,0) };
-
-        for (int i = 0; i < 4; i++)
-        {
-            if (adjacents[i] != null)
-            {
-                if (adjacents[i].module != null)
-                {
-                    walls.GetChild(i).gameObject.SetActive(false);
-
-                    if (!adjacents[i].module.wasChecked) adjacents[i].module.Assemble();
-
-                }
-            }
-                
-        }
-
-        GridTile[] diagonals = new GridTile[4]
-        { GetAdjacentTile(-1,1), GetAdjacentTile(1,1), GetAdjacentTile(1,-1), GetAdjacentTile(-1,-1) };
-
-        for (int i = 0; i < 4; i++)
-        {
-            int next = i < 3 ? i + 1 : 0;
-            int prev = i > 0 ? i - 1 : 3;
-
-            if (adjacents[i] != null && diagonals[i] != null && adjacents[prev] != null)
-            {
-                if ((diagonals[i].module != null || adjacents[i].module != null || adjacents[prev].module != null) && !preventPlacement)
-                {
-                    columns.GetChild(i).gameObject.SetActive(false);
-                }
-                else
-                {
-                    columns.GetChild(i).gameObject.SetActive(true);
-                }
-            }
-        }
+        gridTile.GetAdjacentTiles();
     }
-    /// <summary>
-    /// Returns a tile adjacent to this one, based on a direction.
-    /// </summary>
-    /// <param name="x">x, Relative to our position</param>
-    /// <param name="z">z, Relative to our position</param>
-    /// <returns></returns>
-    GridTile GetAdjacentTile(int x, int z)
+
+    public void Delete()
     {
-        try
+        if (hazard != null)
         {
-            return GameManager.instance.GetGrid().GetTile((int)(gridTile.coordinates.x + x), (int)(gridTile.coordinates.z + z)).GetComponent<GridTile>();
-        } 
-        catch
-        {
-            return null;
+            Destroy(hazard.gameObject);
+            hazard = null;
         }
+        gridTile.module = null;
+        foreach (GridTile tile in gridTile.adjacents)
+        {
+            if (tile != null)
+            {
+                if (tile.module != null)
+                {
+                    tile.module.Assemble();
+                }
+            }
+        }
+        GameManager.instance.tilesPlaced--;
+        gridTile = null;
+        Destroy(gameObject);
     }
 
-    GridTile GetAdjacentWall(int x, int z)
+
+    protected GridTile GetAdjacentWall(int x, int z)
     {
         GridTile tile = GameManager.instance.GetGrid().GetTile((int)(gridTile.coordinates.x + x), (int)(gridTile.coordinates.z + z)).GetComponent<GridTile>();
         if (tile == null) return null;
@@ -87,7 +54,7 @@ public class Module : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            if (tile.module.adjacents[i] == gridTile)
+            if (tile.adjacents[i] == gridTile)
             {
                 if (walls.GetChild(i).gameObject.activeSelf) return tile;
                 return null;
@@ -97,7 +64,12 @@ public class Module : MonoBehaviour
         return null;
     }
 
-    public void LateUpdate()
+    public bool IsOpen(int dir)
+    {
+        return openings[dir] && gridTile.IsOpen(dir);
+    }
+
+    public virtual void LateUpdate()
     {
         wasChecked = false;
     }

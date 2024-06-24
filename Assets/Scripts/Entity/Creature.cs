@@ -38,19 +38,16 @@ public class Creature : DynamicEntity
     {
         base.Update();
 
-        
-
         if (isNavigating)
         {
-            animator.SetFloat("Speed", (float)(speed * speed) / 100);
+            animator.SetFloat("Speed", (float)(speed * speed) / 100f);
         }
         else
         {
             animator.SetFloat("Speed", 0);
         }
 
-        navMeshAgent.isStopped = isMoving;
-        
+        navMeshAgent.speed = isMoving ? speed / 7f : 0;
 
         List<Creature> entitiesCopy = new List<Creature>(foes);
         foreach (Creature entity in entitiesCopy)
@@ -98,7 +95,7 @@ public class Creature : DynamicEntity
                 {
                     if (entity.entityType == EntityType.Monster || entity.entityType == EntityType.Hero) 
                     {
-                        visible = IsTargetInLineOfSight(target);
+                        visible = IsTargetInLineOfSight(target) || Vector3.Distance(transform.position, target.transform.position) < 0.1f;
                         // We only care about line of sight if the target is a creature
                     }
                 }
@@ -106,7 +103,7 @@ public class Creature : DynamicEntity
                 {
                     isNavigating = true;
                 }
-                else if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && (visible || Vector3.Distance(target.position, transform.position) <= navMeshAgent.stoppingDistance))
+                else if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && visible && Vector3.Distance(target.position, transform.position) <= navMeshAgent.stoppingDistance)
                 {
                     Arrive(target);
                     isNavigating = false;

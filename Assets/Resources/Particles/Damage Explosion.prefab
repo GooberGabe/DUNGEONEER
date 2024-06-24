@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1239570462310941048, guid: 23fe3cf2574ae6a4090ebad68c56f68d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.072586
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1239570462310941048, guid: 23fe3cf2574ae6a4090ebad68c56f68d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1239570462310941048, guid: 23fe3cf2574ae6a4090ebad68c56f68d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.8401687
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1239570462310941048, guid: 23fe3cf2574ae6a4090ebad68c56f68d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -107,7 +107,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 2.2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   cost: 0
   detectedTypes: 0400000003000000
   upgradeTree: {fileID: 0}
-  counter: 2
+  counter: 3
   areaOn: 1
-  damage: 20
+  damage: 15
   destroyObject: 0

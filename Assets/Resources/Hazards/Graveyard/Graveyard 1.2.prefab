@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: -2954808662792032550, guid: 8c85ddc87de60234297cd68ce8c9b19f, type: 3}
     - target: {fileID: 5999028739587000900, guid: 2e1a7cf00a97f8e4baa245294be2cf3a, type: 3}
       propertyPath: cost
-      value: 200
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 5999028739587000900, guid: 2e1a7cf00a97f8e4baa245294be2cf3a, type: 3}
       propertyPath: upgradeName

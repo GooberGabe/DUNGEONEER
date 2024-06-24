@@ -6,8 +6,11 @@ public class PlacementPreview : MonoBehaviour
 {
     public GameObject placement;
     public bool snapToGrid;
+    public GameObject buttonRef;
 
-    public int cost { get { return placement.GetComponent<Entity>().cost; } }
+    private GridTile gridTile;
+
+    public int cost { get { return GetCost(); } }
 
     private bool _isValid;
     public bool isValid
@@ -27,9 +30,19 @@ public class PlacementPreview : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void SetGridTile(GridTile tile)
+    {
+        gridTile = tile;
+    }
+
+    protected virtual void Start()
     {
         transform.eulerAngles = new Vector3(0, 180, 0);
+    }
+
+    protected virtual int GetCost()
+    {
+        return placement.GetComponent<Entity>().cost;
     }
 
     public void Place(Vector3 pos)
@@ -38,10 +51,36 @@ public class PlacementPreview : MonoBehaviour
         {
             if (GameManager.instance.TryBuy(cost))
             {
-                if (placement.GetComponent<Entity>().entityType == EntityType.Monster) GameManager.instance.Spawn(placement, pos);
-                else Instantiate(placement, pos, Quaternion.identity);
+                _Place(pos);
                 Destroy(gameObject);
             }
         }
+    }
+
+    protected virtual void _Place(Vector3 pos)
+    {
+        if (placement.GetComponent<Entity>().entityType == EntityType.Monster)
+        {
+            GameManager.instance.Spawn(placement, pos);
+        }
+        else
+        {
+            GameObject tower = Instantiate(placement, pos, Quaternion.identity);
+            gridTile.module.hazard = tower.GetComponent<Entity>();
+        }
+    }
+
+    public virtual bool CheckValidity(Module module)
+    {
+        bool v = true;
+        if (module != null)
+        {
+            if (module.hazard != null || module.preventPlacement) v = false;
+        }
+        else
+        {
+            v = false;
+        }
+        return v;
     }
 }

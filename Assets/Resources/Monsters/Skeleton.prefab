@@ -430,20 +430,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adcf2e5d55c2ef54aa2c1688efffe85d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 10
-  maxHitPoints: 10
+  hitPoints: 9
+  maxHitPoints: 9
   entityName: Skeleton
+  upgradeName: 
   cost: 0
   detectedTypes: 03000000
+  upgradeTree: {fileID: 0}
   mainDestination: {fileID: 0}
+  targetClose: 1
   holdPosition: {fileID: 0}
-  firePosition: {fileID: 0}
+  firePosition:
+  - {fileID: 0}
   projectile: {fileID: 0}
+  cooldownTime: 0
   strength: 1
   speed: 4
   size: 0
   behavior: 0
   subDestination: {fileID: 0}
+  isAlive: 1
+  isMoving: 0
   foes: []
   spawnOrigin: {fileID: 0}
 --- !u!195 &2930478306347509544

@@ -71,6 +71,12 @@ public abstract class Entity : MonoBehaviour
         Poof(0);
     }
 
+    public virtual void Sell()
+    {
+        Destroy(gameObject);
+        GameManager.instance.gold += cost - 10;
+    }
+
     public virtual void TakeDamage(float amount)
     {
         hitPoints -= amount;
@@ -81,10 +87,19 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
+    public virtual void Heal(float amount)
+    {
+        hitPoints += amount;
+        if (hitPoints > maxHitPoints)
+        {
+            hitPoints = maxHitPoints;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         Entity entity = other.gameObject.GetComponent<Entity>();
-        if (entity != null)
+        if (entity != null && !other.isTrigger)
         {
             if (detectedTypes.Contains(entity.entityType))
             {
@@ -96,7 +111,7 @@ public abstract class Entity : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Entity entity = other.gameObject.GetComponent<Entity>();
-        if (entity != null)
+        if (entity != null && !other.isTrigger)
         {
             if (detectedTypes.Contains(entity.entityType))
             {

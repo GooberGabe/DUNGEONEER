@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 237ccc1cc125aee44bba47119e794cc2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0879102
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 237ccc1cc125aee44bba47119e794cc2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 237ccc1cc125aee44bba47119e794cc2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.180968
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 237ccc1cc125aee44bba47119e794cc2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -671,15 +671,23 @@ MonoBehaviour:
   hitPoints: 20
   maxHitPoints: 20
   entityName: Deprived
+  upgradeName: 
   cost: 0
   detectedTypes: 
+  upgradeTree: {fileID: 0}
+  mainDestination: {fileID: 0}
+  targetClose: 1
+  holdPosition: {fileID: 1303631575632652688}
+  firePosition: []
+  projectile: {fileID: 0}
+  cooldownTime: 0
   strength: 2
   speed: 5
   size: 0
   behavior: 0
-  mainDestination: {fileID: 0}
   subDestination: {fileID: 0}
-  holdPosition: {fileID: 1303631575632652688}
+  isAlive: 1
+  isMoving: 0
   foes: []
 --- !u!195 &2622786984527320832
 NavMeshAgent:

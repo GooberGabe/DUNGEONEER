@@ -274,7 +274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: cost
-      value: 200
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: projectile
@@ -286,7 +286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: cooldownTime
-      value: 320
+      value: 280
       objectReference: {fileID: 0}
     - target: {fileID: 6992433605001656919, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: m_Name

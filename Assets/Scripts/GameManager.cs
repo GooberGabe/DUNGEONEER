@@ -6,7 +6,9 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+    private LevelReader reader;
     public MapGrid grid;
+    public Color[] skinTones;
     public int gold;
     public int tilesPlaced;
     public int maxTiles = 30;
@@ -15,6 +17,9 @@ public class GameManager : MonoBehaviour
     public bool isValidPath;
     public bool tilePlacement;
     public int totalHeroes;
+    public bool playRound = false;
+
+    public int round { get { return grid.startModules[0].GetRound() + 1; } }
 
     private void Awake()
     {
@@ -24,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         instance = this;
+        reader = GetComponent<LevelReader>();
     }
 
 
@@ -31,6 +37,32 @@ public class GameManager : MonoBehaviour
     {
         Monster dragon = grid.endModule.dragonRef;
         isAlive = dragon != null ? (dragon.hitPoints > 0) : false;
+
+        // Make sure all modules have finished spawning heroes
+        bool allHeroesSpawned = true;
+        foreach (StartModule start in grid.startModules)
+        {
+            if (!start.allHeroesSpawned) allHeroesSpawned = false;
+        }
+        if (allHeroesSpawned && totalHeroes == 0 && playRound)
+        {
+            playRound = false;
+            InterfaceManager.instance.Message("Round Completed!", 240);
+            gold += (1 + grid.startModules[0].waveNum) * 20;
+        }
+    }
+
+    public void NewRound()
+    {
+        // If in between rounds
+        if (!playRound)
+        {
+            foreach (StartModule start in grid.startModules)
+            {
+                start.NewRound();
+            }
+            playRound = true;
+        }
     }
 
     public bool TryBuy(int price)
@@ -48,23 +80,18 @@ public class GameManager : MonoBehaviour
 
     public bool CanPlaceTiles()
     {
-        return gold >= GetTilePrice() && !GetGrid().startModule.playRound;
+        return gold >= GetTilePrice() && !playRound;
     }
 
     public int GetTilePrice()
     {
-        if (tilesPlaced > maxTiles) return 20;
+        if (tilesPlaced >= maxTiles) return 20;
         return 0;
     }
 
     public MapGrid GetGrid()
     {
         return grid;
-    }
-
-    public LevelData GetLevelData() 
-    { 
-        return GetComponent<LevelReader>().levelData;
     }
 
     public Creature Spawn(GameObject creatureToSpawn, Vector3 spawnPosition, int facingAngle = 180)

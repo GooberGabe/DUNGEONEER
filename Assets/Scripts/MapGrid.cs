@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEngine.GraphicsBuffer;
@@ -17,8 +18,10 @@ public class MapGrid : MonoBehaviour
     private GameObject[,] tiles; // 2D array to store tile objects
 
     private GameObject selectedTile;
-    public StartModule startModule;
+    public List<StartModule> startModules;
     public EndModule endModule;
+
+    private bool preventPlacement = false;
 
     private Color highlightColor = Color.white;
 
@@ -35,10 +38,14 @@ public class MapGrid : MonoBehaviour
         transform.position = new Vector3(-gridSize/2, 0, -gridSize/2);
     }
 
+    /// <summary>
+    /// Temporary until level design is implemented.
+    /// </summary>
     void SetEndpoints()
     {
-        startModule = (StartModule)GetTile(6, 6).GetComponent<GridTile>().AddStartModule(0);
-        endModule = (EndModule)GetTile(12, 12).GetComponent<GridTile>().AddEndModule();
+        StartModule startModule = (StartModule)GetTile(6, 6).GetComponent<GridTile>().AddStartModule(0);
+        startModules.Add(startModule);
+        endModule = (EndModule)GetTile(14, 14).GetComponent<GridTile>().AddEndModule();
     }
 
     void CreateGrid()
@@ -77,7 +84,7 @@ public class MapGrid : MonoBehaviour
     {
         try
         {
-            return tiles[(int)(position.x + (gridSize / 2)), (int)(position.z + (gridSize / 2))];
+            return tiles[Mathf.FloorToInt(position.x + (gridSize / 2)), Mathf.FloorToInt(position.z + (gridSize / 2))];
         }
         catch 
         {
@@ -121,6 +128,8 @@ public class MapGrid : MonoBehaviour
 
         HideTiles();
 
+        if (!Input.GetMouseButton(0)) preventPlacement = false;
+
         if (GameManager.instance.isAlive) {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
@@ -137,22 +146,17 @@ public class MapGrid : MonoBehaviour
                     int z = Mathf.RoundToInt(hit.point.z);
                     GameObject hoverTile = GetTile(new Vector3(x, 0, z));
 
+                    // -- PLACEMENT PREVIEW
+
                     PlacementPreview prev = InterfaceManager.instance.currentPreview;
                     if (hoverTile != null)
                     {
                         if (prev != null)
                         {
-                            prev.isValid = true;
                             Module module = hoverTile.GetComponent<GridTile>().module;
 
-                            if (module != null)
-                            {
-                                if (module.hazard != null || module.preventPlacement) prev.isValid = false;
-                            }
-                            else
-                            {
-                                prev.isValid = false;
-                            }
+                            prev.isValid = prev.CheckValidity(module);
+                            prev.SetGridTile(hoverTile.GetComponent<GridTile>());
 
                             if (prev.snapToGrid)
                             {
@@ -179,16 +183,34 @@ public class MapGrid : MonoBehaviour
                             if (selectedTile.layer == 3 && GameManager.instance.tilePlacement)
                             {
                                 GridTile selectedTileSquare = selectedTile.GetComponent<GridTile>();
-                                if (selectedTileSquare.module == null) Highlight(selectedTileSquare);
 
-                                if (Input.GetMouseButton(0) && selectedTileSquare.module == null && selectedTileSquare.validPlacement && !startModule.playRound)
+                                if (selectedTileSquare.module == null)
                                 {
+                                    Highlight(selectedTileSquare);
+                                    if (Input.GetMouseButton(0) && !preventPlacement)
+                                    {
+                                        if (selectedTileSquare.validPlacement && !GameManager.instance.playRound)
+                                        {
+                                            int price = GameManager.instance.GetTilePrice();
 
-                                    int price = GameManager.instance.GetTilePrice();
-                                    
-                                    if (GameManager.instance.TryBuy(price)) selectedTileSquare.AddModule();
-                                    
+                                            if (GameManager.instance.TryBuy(price)) selectedTileSquare.AddFlexModule();
+                                        }
+                                    }
                                 }
+                                else
+                                {
+                                    if (selectedTileSquare.module.GetComponent<FlexModule>()!=null)
+                                    {
+                                        ((FlexModule)selectedTileSquare.module).hover = true;
+                                        if (Input.GetMouseButtonDown(0))
+                                        {
+                                            selectedTileSquare.module.Delete();
+                                            preventPlacement = true;
+                                        }
+                                    }
+                                        
+                                }
+
                             }
                             else
                             {

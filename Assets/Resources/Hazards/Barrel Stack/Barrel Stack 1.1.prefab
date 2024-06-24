@@ -155,6 +155,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1326794998574239499, guid: 69e4456e0c899be46a0c0b5f360f1880, type: 3}
+      propertyPath: cost
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 1326794998574239499, guid: 69e4456e0c899be46a0c0b5f360f1880, type: 3}
       propertyPath: projectile
       value: 
       objectReference: {fileID: 5601567804448451786, guid: bc1b27ec65e54564483e61b84e1b0e54, type: 3}

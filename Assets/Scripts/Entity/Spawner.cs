@@ -45,11 +45,22 @@ public class Spawner : Hazard
 
     public override void Upgrade()
     {
+        DestroyMonsters();
+        base.Upgrade();
+    }
+
+    public override void Sell()
+    {
+        DestroyMonsters();
+        base.Sell();
+    }
+
+    private void DestroyMonsters()
+    {
         foreach (Monster m in monsters)
         {
             m.Poof();
         }
-        base.Upgrade();
     }
 
     protected override void Start()
@@ -76,7 +87,7 @@ public class Spawner : Hazard
 
         }
 
-        while (!GameManager.instance.GetGrid().startModule.playRound && monsters.Count < maxSpawns)
+        while (!GameManager.instance.playRound && monsters.Count < maxSpawns)
         {
             Engage();
         }

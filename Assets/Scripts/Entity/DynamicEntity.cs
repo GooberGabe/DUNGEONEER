@@ -7,9 +7,12 @@ public class DynamicEntity : Entity
     public override EntityType entityType => throw new System.NotImplementedException();
 
     public Transform mainDestination;
+    public bool targetClose = true;
     public Transform holdPosition;
     public Transform[] firePosition;
     public GameObject projectile;
+    protected int cooldownCounter;
+    public int cooldownTime;
 
     public static float NormalizeAngle(float degrees)
     {
@@ -38,10 +41,24 @@ public class DynamicEntity : Entity
         return mainDestination;
     }
 
+    protected virtual List<Entity> GetValidTargets()
+    {
+        return entitiesInRange;
+    }
+
     protected virtual void Face(Transform target)
     {
         transform.LookAt(target);
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (cooldownCounter > 0)
+        {
+            cooldownCounter--;
+        }
     }
 
     public virtual void Fire()

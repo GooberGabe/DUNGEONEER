@@ -537,7 +537,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3036686528766786210, guid: 62e3bb81b2e2a5441850886c2be52b90, type: 3}
       propertyPath: cost
-      value: 200
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 3036686528766786210, guid: 62e3bb81b2e2a5441850886c2be52b90, type: 3}
       propertyPath: maxSpawns
