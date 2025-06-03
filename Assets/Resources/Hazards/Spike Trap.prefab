@@ -49,21 +49,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3f6f29738f8d54bac315273054436c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   hitPoints: 1
   maxHitPoints: 1
   entityName: Spike Trap
   upgradeName: 
-  cost: 140
+  cost: 150
   detectedTypes: 03000000
+  rangeColliders: []
   upgradeTree: {fileID: 0}
-  cooldownTime: 650
+  cooldownTime: 8
   hitBox: {fileID: 1914947869800090722}
   effectOffset: {x: 0, y: 0, z: 0}
   maxUses: 0
-  disengageTime: 570
+  disengageTime: 2.2
 --- !u!95 &2266500521854503922
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -77,6 +79,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -101,7 +104,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9, y: 0.26, z: 0.9}
+  m_Size: {x: 0.85, y: 0.26, z: 0.85}
   m_Center: {x: 0, y: 0.11491407, z: 0}
 --- !u!1001 &1608395437438300467
 PrefabInstance:
@@ -129,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff8918ee455997c48958317bcb8c5aa5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.542
+      value: -0.495
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff8918ee455997c48958317bcb8c5aa5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -207,7 +210,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.017645337, y: 0.01764534, z: 0.011754515}
+  m_Size: {x: 0.01964534, y: 0.01964534, z: 0.011754515}
   m_Center: {x: 0, y: 0, z: 0.005821562}
 --- !u!114 &608257319681878137
 MonoBehaviour:
@@ -221,16 +224,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21d6ccb22e1df2488527b2a7fafc4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
   hitPoints: 1
   maxHitPoints: 1
   entityName: Spikes
   upgradeName: 
   cost: 0
   detectedTypes: 03000000
+  rangeColliders: []
   upgradeTree: {fileID: 0}
-  counter: -1
+  counter: -99
   areaOn: 0
-  damage: 20
+  damage: 10
+  damageInterval: 0
+  destroyObject: 1
+  statusEffects: 
+  effectDuration: 0
 --- !u!1001 &2920357971044819010
 PrefabInstance:
   m_ObjectHideFlags: 0

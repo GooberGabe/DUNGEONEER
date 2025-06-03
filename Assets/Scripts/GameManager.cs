@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         {
             playRound = false;
             InterfaceManager.instance.Message("Round Completed!", 240);
-            gold += (1 + grid.startModules[0].waveNum) * 20;
+            gold += (2 + grid.startModules[0].waveNum) * 20;
         }
     }
 
@@ -94,11 +94,13 @@ public class GameManager : MonoBehaviour
         return grid;
     }
 
-    public Creature Spawn(GameObject creatureToSpawn, Vector3 spawnPosition, int facingAngle = 180)
+
+    // NOTE: Changed return type from Creature to Entity
+    public Entity Spawn(GameObject creatureToSpawn, Vector3 spawnPosition, int facingAngle = 180)
     {
         GameObject c = Instantiate(creatureToSpawn, spawnPosition, Quaternion.identity);
         c.transform.eulerAngles = new Vector3(0, facingAngle, 0);
-        Creature creature = c.GetComponent<Creature>();
+        Entity creature = c.GetComponent<Entity>();
         
         return creature;
     }

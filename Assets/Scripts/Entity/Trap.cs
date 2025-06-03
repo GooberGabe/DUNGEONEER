@@ -13,7 +13,7 @@ public class Trap : Hazard
     public GameObject hitBox;
     public Vector3 effectOffset;
     public int maxUses;
-    public int disengageTime = 10;
+    public float disengageTime = 10;
     private int uses;
 
 
@@ -65,7 +65,7 @@ public class Trap : Hazard
         } 
         else
         {
-            if (cooldownCounter == disengageTime) Disengage();
+            if (cooldownCounter >= disengageTime) Disengage();
         }
 
     }

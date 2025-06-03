@@ -13,10 +13,12 @@ public class UpgradeTier : MonoBehaviour
         // Instantiate a new button for the entity
         GameObject buttonObject = Instantiate(buttonPrefab, transform);
         Button button = buttonObject.GetComponent<Button>();
-        button.GetComponent<UpgradeButton>().purchaseFab = entity.gameObject;
+        UpgradeButton buttonScript = button.GetComponent<UpgradeButton>();
+        buttonScript.purchaseFab = entity.gameObject;
 
-        // Set the button text
-        button.GetComponentInChildren<TextMeshProUGUI>().text = entity.upgradeName.Length > 0 ? entity.upgradeName : entity.entityName;
+        // Set the button text & image
+        button.GetComponentInChildren<TextMeshProUGUI>().text = entity.upgradeName.Length > 0 ? $"{entity.cost}" : ""; // entity.upgradeName.Length > 0 ? entity.upgradeName : entity.entityName;
+        buttonScript.icon.sprite = entity.icon;
         return button;
     }
 }

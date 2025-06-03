@@ -10,6 +10,7 @@ using UnityEngine.AI;
 public abstract class Entity : MonoBehaviour
 {
 
+    public Sprite icon;
     public float hitPoints = 1;
     public float maxHitPoints = 1;
     public string entityName;
@@ -17,10 +18,13 @@ public abstract class Entity : MonoBehaviour
     public int cost;
     abstract public EntityType entityType { get; }
     public EntityType[] detectedTypes;
+    [SerializeField]
+    protected Collider[] rangeColliders;
     public UpgradeTree upgradeTree;
-
+    protected bool isAlive = true;
 
     protected List<Entity> entitiesInRange = new List<Entity>();
+    protected Transform anchorPoint;
 
     protected virtual void Start()
     {
@@ -37,9 +41,14 @@ public abstract class Entity : MonoBehaviour
         List<Entity> entitiesCopy = new List<Entity>(entitiesInRange);
         foreach (Entity entity in entitiesCopy) 
         {
-            if (entity == null || !entity.enabled) entitiesInRange.Remove(entity);
+            if (entity == null || !entity.enabled || !entity.IsAlive()) entitiesInRange.Remove(entity);
             
         }
+    }
+
+    public bool IsAlive()
+    {
+        return isAlive;
     }
 
     public virtual string TextDisplay()
@@ -47,12 +56,14 @@ public abstract class Entity : MonoBehaviour
         return "";
     }
 
-    public float GetColliderSize()
+    public virtual float GetRange()
     {
-        Collider col = GetComponent<Collider>();
-        if (col.GetType() == typeof(CapsuleCollider)) return ((CapsuleCollider)col).radius * 2;
-        if (col.GetType() == typeof(BoxCollider)) return Mathf.Max(((BoxCollider)col).size.x, ((BoxCollider)col).size.z);
-        return 0;
+        return 0; // TODO
+    }
+
+    public Collider[] GetRangeColliders()
+    {
+        return rangeColliders;
     }
 
     public void Poof(float delay = 0.1f)
@@ -63,6 +74,7 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Die()
     {
+        isAlive = false;
         Destroy(gameObject); // If alternative behavior is desired, override behavior without calling base
     }
 
@@ -77,7 +89,7 @@ public abstract class Entity : MonoBehaviour
         GameManager.instance.gold += cost - 10;
     }
 
-    public virtual void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount, bool hidden = false)
     {
         hitPoints -= amount;
         if (hitPoints <= 0)
@@ -145,6 +157,36 @@ public abstract class Entity : MonoBehaviour
         }
 
         return false;
+    }
+    
+    public virtual Transform GetTrackingTarget()
+    {
+        return transform;
+    }
+
+    public static Vector3 AddRandomnessToDirection(Vector3 baseDirection, float randomnessFactor, float maxRandomAngle)
+    {
+        if (randomnessFactor <= 0)
+            return baseDirection;
+
+        // Calculate random deviation angle based on randomness factor
+        float randomAngle = UnityEngine.Random.Range(-maxRandomAngle, maxRandomAngle) * randomnessFactor;
+
+        // Create a random rotation around a random axis
+        Vector3 perpendicular = Vector3.Cross(baseDirection, UnityEngine.Random.onUnitSphere);
+        if (perpendicular.magnitude < 0.001f)  // In case they're parallel
+            perpendicular = Vector3.Cross(baseDirection, UnityEngine.Random.onUnitSphere);
+
+        perpendicular.Normalize();
+
+        // Create rotation quaternion
+        Quaternion randomRotation = Quaternion.AngleAxis(randomAngle, perpendicular);
+
+        // Apply rotation to the base direction
+        Vector3 randomizedDirection = randomRotation * baseDirection;
+
+        // Make sure the result is normalized
+        return randomizedDirection.normalized;
     }
 }
 

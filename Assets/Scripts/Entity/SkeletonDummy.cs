@@ -8,4 +8,9 @@ public class SkeletonDummy : MonoBehaviour
     {
         transform.parent.GetComponent<BarrelStack>().Throw();
     }
+
+    public void Fire()
+    {
+        transform.parent.GetComponent<ArcherPost>().ReleaseArrow();
+    }
 }

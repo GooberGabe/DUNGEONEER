@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4917259150324253708}
   - component: {fileID: 4749731524416747532}
   - component: {fileID: 3110247914019085618}
-  - component: {fileID: 2377540303552127558}
+  - component: {fileID: 5261355392213124065}
   m_Layer: 0
   m_Name: Graveyard
   m_TagString: Untagged
@@ -53,19 +53,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928e3928a97cfc346bea0ca8711149d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 3b8c82daec04e9d44a487e532d968de2, type: 3}
   hitPoints: 100
   maxHitPoints: 100
   entityName: Graveyard
   upgradeName: 
-  cost: 100
+  cost: 150
   detectedTypes: 03000000
+  rangeColliders: []
   upgradeTree: {fileID: 11400000, guid: fe8ce36b401203a4a985c72a43ae4f19, type: 2}
-  cooldownTime: 1000
+  cooldownTime: 60
   creatureToSpawn: {fileID: 6245160192056865373, guid: 188efa9d8987ef4459eb952d5715c57a, type: 3}
   spawnRadius: 0.4
   maxSpawns: 3
   alwaysSpawn: 0
   respawnDuringRound: 0
+  respawnRoundStart: 1
 --- !u!136 &3110247914019085618
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -88,8 +91,8 @@ CapsuleCollider:
   m_Radius: 1.2
   m_Height: 1.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
---- !u!65 &2377540303552127558
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &5261355392213124065
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,14 +105,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9, y: 0.2, z: 0.9}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.2, z: 1}
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1001 &479286964387027890
 PrefabInstance:
   m_ObjectHideFlags: 0

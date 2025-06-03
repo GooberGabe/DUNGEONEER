@@ -15,4 +15,4 @@ MonoBehaviour:
   currentEntity: {fileID: 3378342865208979967, guid: 26db3b22f7e98624a9efd0f4c83dd451, type: 3}
   upgrades:
   - {fileID: 11400000, guid: 7b2dbfd38911cf240ae548f43550a0b6, type: 2}
-  description: Fires two projectiles instead of one. Slightly reduced cooldown time.
+  description: Fires two projectiles instead of one, but increased cooldown time.

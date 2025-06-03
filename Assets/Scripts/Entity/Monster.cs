@@ -8,11 +8,23 @@ public class Monster : Creature
 {
     public override EntityType entityType { get; } = EntityType.Monster;
     public Spawner spawnOrigin;
+    public bool unlimitedMovement = false;
 
     protected override void Start()
     {
         base.Start();
-        if (spawnOrigin != null) mainDestination = spawnOrigin.transform;
+        if (!unlimitedMovement)
+        {
+            if (spawnOrigin != null) mainDestination = spawnOrigin.transform;
+            else
+            {
+                Transform origin = new GameObject().transform;
+                origin.position = transform.position;
+                anchorPoint = origin;
+                mainDestination = anchorPoint;
+            }
+        }
+            
     }
 
     protected override void Update()

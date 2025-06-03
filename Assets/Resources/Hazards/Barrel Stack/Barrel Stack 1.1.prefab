@@ -156,8 +156,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1326794998574239499, guid: 69e4456e0c899be46a0c0b5f360f1880, type: 3}
       propertyPath: cost
-      value: 210
+      value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 1326794998574239499, guid: 69e4456e0c899be46a0c0b5f360f1880, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: ab43db61b3538bc41b107a8a12099eac, type: 3}
     - target: {fileID: 1326794998574239499, guid: 69e4456e0c899be46a0c0b5f360f1880, type: 3}
       propertyPath: projectile
       value: 
@@ -165,6 +169,10 @@ PrefabInstance:
     - target: {fileID: 1326794998574239499, guid: 69e4456e0c899be46a0c0b5f360f1880, type: 3}
       propertyPath: upgradeName
       value: Incendiary Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1326794998574239499, guid: 69e4456e0c899be46a0c0b5f360f1880, type: 3}
+      propertyPath: cooldownTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6442682011475831831, guid: 69e4456e0c899be46a0c0b5f360f1880, type: 3}
       propertyPath: m_Name

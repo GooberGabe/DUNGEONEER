@@ -10,9 +10,10 @@ public class DynamicEntity : Entity
     public bool targetClose = true;
     public Transform holdPosition;
     public Transform[] firePosition;
+    protected Transform trackingPosition;
     public GameObject projectile;
-    protected int cooldownCounter;
-    public int cooldownTime;
+    protected float cooldownCounter;
+    public float cooldownTime;
 
     public static float NormalizeAngle(float degrees)
     {
@@ -57,13 +58,26 @@ public class DynamicEntity : Entity
         base.Update();
         if (cooldownCounter > 0)
         {
-            cooldownCounter--;
+            cooldownCounter -= Time.deltaTime;
+        }
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        if (trackingPosition == null)
+        {
+            trackingPosition = transform;
         }
     }
 
     public virtual void Fire()
     {
-        
+        SpawnProjectile();
+    }
+
+    protected void SpawnProjectile()
+    {
         if (GetTarget() != null)
         {
             foreach (Transform barrel in firePosition)
@@ -73,8 +87,10 @@ public class DynamicEntity : Entity
 
                 GameObject p = Instantiate(projectile, barrel.position, Quaternion.identity);
                 p.transform.forward = directionToTarget.normalized;
+                Projectile proj = p.GetComponent<Projectile>();
+                if (proj != null) proj.source = this;
             }
-            
+
         }
     }
 }

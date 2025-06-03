@@ -58,6 +58,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -204,6 +207,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -288,6 +294,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -372,22 +381,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3378342865208979967, guid: 26db3b22f7e98624a9efd0f4c83dd451, type: 3}
       propertyPath: cost
-      value: 180
+      value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 3378342865208979967, guid: 26db3b22f7e98624a9efd0f4c83dd451, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: b92b99baacc346b40a7fd71198433575, type: 3}
     - target: {fileID: 3378342865208979967, guid: 26db3b22f7e98624a9efd0f4c83dd451, type: 3}
       propertyPath: upgradeName
       value: Quad-Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378342865208979967, guid: 26db3b22f7e98624a9efd0f4c83dd451, type: 3}
+      propertyPath: cooldownTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3378342865208979967, guid: 26db3b22f7e98624a9efd0f4c83dd451, type: 3}
       propertyPath: firePosition.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3378342865208979967, guid: 26db3b22f7e98624a9efd0f4c83dd451, type: 3}
-      propertyPath: firePosition.Array.data[2]
+      propertyPath: 'firePosition.Array.data[2]'
       value: 
       objectReference: {fileID: 5138230552238522280}
     - target: {fileID: 3378342865208979967, guid: 26db3b22f7e98624a9efd0f4c83dd451, type: 3}
-      propertyPath: firePosition.Array.data[3]
+      propertyPath: 'firePosition.Array.data[3]'
       value: 
       objectReference: {fileID: 7991739330390568926}
     - target: {fileID: 3719695029563414801, guid: 26db3b22f7e98624a9efd0f4c83dd451, type: 3}

@@ -18,6 +18,7 @@ public class InterfaceManager : MonoBehaviour
     public TextMeshProUGUI tilePlacementText;
     public CollapsibleManager rightPanel;
     public Button playRoundButton;
+    public MenuTooltip menuTooltip;
 
     public Color sellColor;
     public Color upgradeColor;
@@ -42,11 +43,7 @@ public class InterfaceManager : MonoBehaviour
     {
         // -- Round count & Gold count
         roundCount.text = (GameManager.instance.round).ToString();
-        goldCount.text = GameManager.instance.gold.ToString()+" Gold";
-
-        // -- Cost preview
-        costCount.gameObject.SetActive(currentPreview != null);
-        if (currentPreview != null && currentPreview.cost > 0) costCount.text = "Costs " + currentPreview.cost.ToString() + " Gold";
+        goldCount.text = GameManager.instance.gold.ToString();
 
         // -- Defeat message
         counter++;
@@ -237,6 +234,15 @@ public class InterfaceManager : MonoBehaviour
         messageText.text = message;
         messageTime = time;
         counter = 0;
+    }
+
+    public void CancelPreview()
+    {
+        if (currentPreview != null)
+        {
+            Destroy(currentPreview.gameObject);
+        }
+        GameManager.instance.tilePlacement = false;
     }
 
 }

@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentEntity: {fileID: 6178831952888004766, guid: d6c615a698cdbe143813ae9fe52877b4, type: 3}
   upgrades: []
-  description: Fires four projectiles instead of two.
+  description: Fires four projectiles instead of two, but slightly increased cooldown
+    time..

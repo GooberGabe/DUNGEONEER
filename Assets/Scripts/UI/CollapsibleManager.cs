@@ -13,6 +13,11 @@ public class CollapsibleManager : MonoBehaviour
         menus = GetComponentsInChildren<CollapsibleMenu>();
     }
 
+    float ComputeVerticalSize(RectTransform rect, float tiers)
+    {
+        return (tiers * (rect.sizeDelta.y + 2)) + 10;
+    }
+
     private void Update()
     {
         float y = 0;
@@ -29,7 +34,9 @@ public class CollapsibleManager : MonoBehaviour
             {
                 PurchaseButton[] children = menus[i].menu.transform.GetChild(0).GetComponentsInChildren<PurchaseButton>();
                 float levels = Mathf.Floor((children.Length + 1) / 2);
-                menus[i].size = (levels * children[0].GetComponent<RectTransform>().sizeDelta.y) + 10;
+                float levelCap = Mathf.Min(levels, menus[i].maxRows);
+                menus[i].size = ComputeVerticalSize(children[0].GetComponent<RectTransform>(), levelCap);
+                menus[i].content.sizeDelta = new Vector2(menus[i].content.sizeDelta.x, ComputeVerticalSize(children[0].GetComponent<RectTransform>(), levels) + 10);
             }
             else
             {
@@ -40,7 +47,7 @@ public class CollapsibleManager : MonoBehaviour
             rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, Mathf.Lerp(rt.anchoredPosition.y, y, 0.08f));
             if (menus[i].isExpanded)
             {
-                y -= menus[i].size; 
+                y -= menus[i].size - 5; 
             }
             y -= interval;
 

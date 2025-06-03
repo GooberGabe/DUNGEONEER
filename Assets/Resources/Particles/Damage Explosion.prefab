@@ -107,7 +107,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.2
+  m_Radius: 2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -125,12 +125,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: 1
   maxHitPoints: 1
-  entityName: 
+  entityName: Damage Explosion
   upgradeName: 
   cost: 0
   detectedTypes: 0400000003000000
   upgradeTree: {fileID: 0}
-  counter: 3
+  counter: 0
   areaOn: 1
-  damage: 15
+  damage: 10
+  damageInterval: 0
   destroyObject: 0
+  statusEffects: 
+  effectDuration: 0

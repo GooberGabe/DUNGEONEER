@@ -6,6 +6,7 @@ using UnityEngine;
 public class BarrelStack : Turret
 {
     public Transform skeleton;
+    public Vector3 spawnOffset;
     protected override void Face(Transform target)
     {
         //base.Face(target);
@@ -25,11 +26,10 @@ public class BarrelStack : Turret
 
     public override void Fire()
     {
-        Debug.Log(true);
          // Freeze cooldown until the animation has finished.
         if (GetTarget() != null)
         {
-            cooldownCounter = -1;
+            cooldownCounter = -99;
             skeleton.GetComponent<Animator>().SetBool("Fire",true);
 
         }
@@ -40,8 +40,9 @@ public class BarrelStack : Turret
         cooldownCounter = cooldownTime;
         Vector3 directionToTarget = skeleton.forward;
 
-        GameObject p = Instantiate(projectile, firePosition[0].position, Quaternion.identity);
-        p.GetComponent<Rigidbody>().velocity = skeleton.transform.forward * 4.5f;
+        GameObject p = Instantiate(projectile, firePosition[0].position + spawnOffset, Quaternion.identity);
+        p.GetComponent<Projectile>().source = this;
+        p.GetComponent<Rigidbody>().linearVelocity = skeleton.transform.forward * 4.5f;
         p.transform.forward = -skeleton.transform.right;
         Debug.DrawRay(skeleton.position + Vector3.up, directionToTarget, Color.red);
         //p.transform.forward = new Vector3(0, directionToTarget.normalized.y, 0);

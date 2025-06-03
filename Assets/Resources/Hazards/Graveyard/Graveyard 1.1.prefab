@@ -90,13 +90,14 @@ Animation:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992637787543228052}
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Animation: {fileID: 7400000, guid: 48448417358028840abf3ffdf719e232, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 48448417358028840abf3ffdf719e232, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
+  m_UpdateMode: 0
   m_CullingType: 0
 --- !u!1001 &1014392957772608912
 PrefabInstance:
@@ -193,8 +194,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4749731524416747532, guid: 102a2eaa460220e488966d63ac754561, type: 3}
       propertyPath: cost
-      value: 150
+      value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 4749731524416747532, guid: 102a2eaa460220e488966d63ac754561, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: b16a2661923f6064782a2bf01d962c6c, type: 3}
     - target: {fileID: 4749731524416747532, guid: 102a2eaa460220e488966d63ac754561, type: 3}
       propertyPath: alwaysSpawn
       value: 0
@@ -205,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4749731524416747532, guid: 102a2eaa460220e488966d63ac754561, type: 3}
       propertyPath: cooldownTime
-      value: 650
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4749731524416747532, guid: 102a2eaa460220e488966d63ac754561, type: 3}
       propertyPath: respawnDuringRound

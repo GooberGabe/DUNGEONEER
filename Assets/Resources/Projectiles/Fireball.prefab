@@ -52,7 +52,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4753,6 +4753,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4828,10 +4831,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.2
-  m_Height: 0.6
+  m_Radius: 0.07
+  m_Height: 0.2
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -0.21}
+  m_Center: {x: 0, y: 0, z: -0.18}
 --- !u!54 &3532839044783669358
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4871,7 +4874,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa94bfb33235bc479269797b792198f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 7
+  damage: 4
   speed: 3
+  autoMove: 1
   affectedTypes: 03000000
-  afterEffect: {fileID: 1910961028866360555, guid: 23fe3cf2574ae6a4090ebad68c56f68d, type: 3}
+  afterEffects:
+  - {fileID: 1910961028866360555, guid: 23fe3cf2574ae6a4090ebad68c56f68d, type: 3}
+  source: {fileID: 0}
+  effectOrigin: {fileID: 0}
+  destroyObject: 0
+  passThroughUnaffectedTypes: 0
+  nonentityCollisions: 1

@@ -131,6 +131,12 @@ public class MapGrid : MonoBehaviour
         if (!Input.GetMouseButton(0)) preventPlacement = false;
 
         if (GameManager.instance.isAlive) {
+            if (Input.GetMouseButtonDown(1))
+            {
+                InterfaceManager.instance.CancelPreview();
+            }
+
+            // If the cursor is NOT touching any UI element
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 if (Input.GetMouseButtonDown(0))
@@ -252,15 +258,12 @@ public class MapGrid : MonoBehaviour
                 }
                 
             }
+            // If the cursor IS touching a UI element
             else
             {
                 if (Input.GetMouseButton(0))
                 {
-                    if (InterfaceManager.instance.currentPreview != null)
-                    {
-                        Destroy(InterfaceManager.instance.currentPreview.gameObject);
-                    }
-                    GameManager.instance.tilePlacement = false;
+                    InterfaceManager.instance.CancelPreview();
                 }
             }
         }

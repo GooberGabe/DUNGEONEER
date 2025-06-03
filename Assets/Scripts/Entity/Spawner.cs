@@ -13,8 +13,21 @@ public class Spawner : Hazard
     public int maxSpawns;
     public bool alwaysSpawn = true;
     public bool respawnDuringRound = false;
+    public bool respawnRoundStart = true;
 
-    private List<Monster> monsters = new List<Monster>();
+    protected List<Entity> monsters = new List<Entity>();
+    
+    protected override void Start()
+    {
+        base.Start();
+        if (respawnRoundStart)
+        {
+            for (int i = 0; i < maxSpawns; i++)
+            {
+                Engage();
+            }
+        }
+    }
 
     public override string TextDisplay()
     {
@@ -47,6 +60,7 @@ public class Spawner : Hazard
     {
         DestroyMonsters();
         base.Upgrade();
+        Debug.Log("A");
     }
 
     public override void Sell()
@@ -57,28 +71,33 @@ public class Spawner : Hazard
 
     private void DestroyMonsters()
     {
-        foreach (Monster m in monsters)
+        foreach (Entity m in monsters)
         {
             m.Poof();
         }
     }
 
-    protected override void Start()
-    {
-        base.Start();
-        for (int i = 0; i < 3; i++) Engage();
-    }
-
     protected override void Update()
     {
         base.Update();
-        List<Monster> entitiesCopy = new List<Monster>(monsters);
-        foreach (Monster entity in entitiesCopy)
+        Cleanup();
+        CheckEngage();
+            
+    }
+
+    protected void Cleanup()
+    {
+        List<Entity> entitiesCopy = new List<Entity>(monsters);
+        foreach (Entity entity in entitiesCopy)
         {
             if (entity == null || !entity.enabled) monsters.Remove(entity);
         }
+    }
+
+    protected virtual void CheckEngage()
+    {
         if (monsters.Count >= maxSpawns) StartCooldown();
-        if (CanEngage() && respawnDuringRound)
+        if (CanEngage() && respawnDuringRound && GameManager.instance.playRound)
         {
             if ((entitiesInRange.Count > 0 || alwaysSpawn) && monsters.Count < maxSpawns)
             {
@@ -87,10 +106,14 @@ public class Spawner : Hazard
 
         }
 
-        while (!GameManager.instance.playRound && monsters.Count < maxSpawns)
+        if (respawnRoundStart)
         {
-            Engage();
+            while (!GameManager.instance.playRound && monsters.Count < maxSpawns)
+            {
+                Engage();
+            }
         }
+        
     }
 
     private void OnDrawGizmosSelected()

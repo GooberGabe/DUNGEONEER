@@ -141,13 +141,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e4e1c84f1d0614b8e5b637f1ccbade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 8
+  damage: 4
   speed: 5
   autoMove: 0
-  affectedTypes: 0300000004000000
-  afterEffect: {fileID: 3872746741651693173, guid: 850e28507ed54b2489724298a0c688e5, type: 3}
-  effectOrigin: {x: 0, y: 0, z: 0.681}
-  lifespan: 700
+  affectedTypes: 03000000
+  afterEffects: []
+  source: {fileID: 0}
+  effectOrigin: {fileID: 0}
+  destroyObject: 1
+  passThroughUnaffectedTypes: 1
+  nonentityCollisions: 0
+  knockback: 0
+  lifespan: 8
 --- !u!136 &7120103163002017948
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -196,6 +201,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

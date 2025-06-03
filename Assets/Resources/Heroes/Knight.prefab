@@ -547,7 +547,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &8355400818641262476
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -561,6 +561,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -579,23 +580,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: 30
-  maxHitPoints: 30
+  maxHitPoints: 25
   entityName: Knight
   upgradeName: 
-  cost: 10
+  cost: 15
   detectedTypes: 
   upgradeTree: {fileID: 0}
   mainDestination: {fileID: 0}
+  targetClose: 1
   holdPosition: {fileID: 6234614233964255470}
   firePosition:
   - {fileID: 0}
   projectile: {fileID: 0}
+  cooldownTime: 0
   strength: 3
-  speed: 5
+  speed: 4
   size: 0
   behavior: 0
   subDestination: {fileID: 0}
   isAlive: 1
+  isMoving: 0
   foes: []
 --- !u!195 &6656050487686337559
 NavMeshAgent:

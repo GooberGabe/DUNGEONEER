@@ -9,7 +9,7 @@ public class Turret : DynamicEntity
 
     public override string TextDisplay()
     {
-        return "Range:  " + GetComponent<CapsuleCollider>().radius.ToString() +
+        return "Range:  " + GetRange() +
              "\nDamage: " + projectile.GetComponent<Projectile>().damage;
     }
 
@@ -37,7 +37,7 @@ public class Turret : DynamicEntity
             {
                 if (IsTargetInLineOfSight(validTargets[i].transform) && validTargets[i].hitPoints > 0)
                 {
-                    mainDestination = validTargets[i].transform;
+                    mainDestination = validTargets[i].GetTrackingTarget();
                     Face(mainDestination);
                 }
 
@@ -47,7 +47,7 @@ public class Turret : DynamicEntity
 
     private bool CanFire()
     {
-        return cooldownCounter == 0;
+        return cooldownCounter <= 0;
     }
 
     protected override void Update()

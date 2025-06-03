@@ -15,4 +15,5 @@ MonoBehaviour:
   currentEntity: {fileID: 1326794998574239499, guid: 69e4456e0c899be46a0c0b5f360f1880, type: 3}
   upgrades:
   - {fileID: 11400000, guid: 3d040a145b60b014bbc9bd8a763e052a, type: 2}
+  - {fileID: 11400000, guid: bfc3c7d1fdad3e047b2a157ce6745b08, type: 2}
   description: 

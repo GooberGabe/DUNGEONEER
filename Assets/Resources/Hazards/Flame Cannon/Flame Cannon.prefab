@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 32916114077683397}
   - component: {fileID: 158916749745655496}
   - component: {fileID: 479711837500238825}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_1_Mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,6 +58,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -95,7 +98,7 @@ GameObject:
   - component: {fileID: 4607743484777527633}
   - component: {fileID: 7717898438925295979}
   - component: {fileID: 8042384738972066}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_1_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,6 +145,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -179,7 +185,7 @@ GameObject:
   - component: {fileID: 3029037016333423237}
   - component: {fileID: 8108057232732742182}
   - component: {fileID: 2851823613650996282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon_1_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,6 +232,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -260,13 +269,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 700208037042226465, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1230593827960235081, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2737987955181054726, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3708567429983079461, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: m_Radius
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3708567429983079461, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991788925573772373, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5171077472220357706, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5352252349958448591, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5629609477591905995, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: m_LocalPosition.y
@@ -278,8 +311,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: cost
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: f4ced147578258241894128640ea65b7, type: 3}
     - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: projectile
       value: 
@@ -293,12 +330,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a7595d934825ad943b8f21a8ecf321bd, type: 2}
     - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
-      propertyPath: firePosition.Array.data[0]
+      propertyPath: cooldownTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: rangeColliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: 'firePosition.Array.data[0]'
       value: 
       objectReference: {fileID: 927058055618102415}
+    - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: 'rangeColliders.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8181505536969686625}
     - target: {fileID: 6992433605001656919, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: m_Name
       value: Flame Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6992433605001656919, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555040326348610353, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: m_Size.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555040326348610353, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: m_Center.y
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 7656627325585383661, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: m_LocalPosition.x
@@ -365,5 +426,10 @@ Transform:
 --- !u!4 &2935287446936572585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7656627325585383661, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+  m_PrefabInstance: {fileID: 4827280036438585924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &8181505536969686625 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 3708567429983079461, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
   m_PrefabInstance: {fileID: 4827280036438585924}
   m_PrefabAsset: {fileID: 0}

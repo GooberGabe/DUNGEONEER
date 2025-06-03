@@ -11,13 +11,14 @@ public class Creature : DynamicEntity
     public int speed;
     public Size size;
     public Behavior behavior;
+    private float[] statusEffectDurations;
+    private GameObject[] effectDisplays;
 
     public Transform subDestination;
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
     private bool isNavigating;
-    public bool isAlive = true;
     public bool isMoving = false;
 
     public List<Creature> foes;
@@ -27,27 +28,63 @@ public class Creature : DynamicEntity
     protected override void Start()
     {
         base.Start();
+        statusEffectDurations = new float[2];
+        effectDisplays = new GameObject[1];
+
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
         GameObject h = (GameObject)Instantiate(Resources.Load("UI/HealthDisplay"), transform.position + Vector3.up, Quaternion.identity);
         h.GetComponent<HealthDisplay>().subject = this;
+
+        GameObject b = (GameObject)Instantiate(Resources.Load("Particles/StatusBurning"), transform.position, Quaternion.identity, transform);
+        b.transform.localScale = Vector3.one;
+        b.SetActive(false);
+        effectDisplays[0] = b;
+
+        GameObject t = new GameObject();
+        t.transform.parent = transform;
+        t.name = "Tracking Position";
+        trackingPosition = t.transform;
+        SetTrackingPosition(0);
     }
 
     protected override void Update()
     {
         base.Update();
+        float effectiveSpeed = speed;
+
+        for (int i = 0; i < statusEffectDurations.Length; i++)
+        {
+            bool statusOn = false;
+            if (statusEffectDurations[i] > 0)
+            {
+                statusEffectDurations[i] -= Time.deltaTime;
+                statusOn = true;
+                if (i == (int)StatusEffect.Burning)
+                {
+                    TakeDamage(Time.deltaTime * 3, true);
+                }
+                if (i == (int)StatusEffect.Slowed)
+                {
+                    effectiveSpeed *= .5f;
+                }
+            }
+            if (i < effectDisplays.Length) effectDisplays[i].SetActive(statusOn);
+        }
 
         if (isNavigating)
         {
-            animator.SetFloat("Speed", (float)(speed * speed) / 100f);
+            animator.SetFloat("Speed", Mathf.Max((float)(speed * speed) / 100f, 0.1f));
+            SetTrackingPosition(isMoving ? effectiveSpeed : 0);
         }
         else
         {
             animator.SetFloat("Speed", 0);
+            SetTrackingPosition(0);
         }
 
-        navMeshAgent.speed = isMoving ? speed / 7f : 0;
+        navMeshAgent.speed = isMoving ? effectiveSpeed / 7f : 0;
 
         List<Creature> entitiesCopy = new List<Creature>(foes);
         foreach (Creature entity in entitiesCopy)
@@ -63,6 +100,16 @@ public class Creature : DynamicEntity
         return hitPoints.ToString() + "/" + maxHitPoints.ToString() + " HP" +
                "\nDamage: " + strength.ToString() +
                "\nSpeed:  " + speed.ToString();
+    }
+
+    public float GetStatusEffect(StatusEffect effect)
+    {
+        return statusEffectDurations[(int)effect];
+    }
+
+    public void SetStatusEffect(StatusEffect effect, float duration)
+    {
+        statusEffectDurations[(int)effect] = duration;
     }
 
     protected override Transform GetTarget()
@@ -187,10 +234,14 @@ public class Creature : DynamicEntity
         }
     }
 
-    public override void TakeDamage(float amount)
+    public override void TakeDamage(float amount, bool hidden = false)
     {
-        base.TakeDamage(amount);
-        Instantiate((GameObject)Resources.Load("Particles/BloodSplat"), transform.position + (transform.up * 0.5f), Quaternion.identity);
+        if (isAlive)
+        {
+            base.TakeDamage(amount);
+            if (!hidden) Instantiate((GameObject)Resources.Load("Particles/BloodSplat"), transform.position + (transform.up * 0.5f), Quaternion.identity);
+        }
+            
     }
 
     void SetDestination(Vector3 destination)
@@ -210,6 +261,18 @@ public class Creature : DynamicEntity
     {
         animator.SetBool("Attacking", false);
     }
+
+
+    public override Transform GetTrackingTarget()
+    {
+        return trackingPosition;
+    }
+    
+    private void SetTrackingPosition(float _speed)
+    {
+        trackingPosition.position = transform.position + (transform.forward * (_speed * 0.03f));
+    }
+
 }
 
 public enum Behavior

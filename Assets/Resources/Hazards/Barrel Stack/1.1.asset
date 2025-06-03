@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 1.1
   m_EditorClassIdentifier: 
   currentEntity: {fileID: 4047336855579859792, guid: cbd84e2ebb0739e4aa94c27b6c602442, type: 3}
-  upgrades: []
+  upgrades:
+  - {fileID: 11400000, guid: 132a2e05b7fa8414d906ce23cefdb762, type: 2}
   description: Barrels explode when they collide with walls, dealing damage to creatures
     in range.

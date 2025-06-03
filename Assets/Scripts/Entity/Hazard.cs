@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Hazard : Entity
 {
-    public int cooldownTime;
+    public float cooldownTime;
 
-    protected int cooldownCounter;
+    protected float cooldownCounter;
 
     public override EntityType entityType => throw new NotImplementedException();
 
@@ -26,7 +26,7 @@ public class Hazard : Entity
         base.Update();
         if (cooldownCounter > 0)
         {
-            cooldownCounter--;
+            cooldownCounter -= Time.deltaTime;
         }
     }
 
@@ -37,7 +37,7 @@ public class Hazard : Entity
 
     protected bool CanEngage()
     {
-        return cooldownCounter == 0;
+        return cooldownCounter <= 0;
     }
 
 }
