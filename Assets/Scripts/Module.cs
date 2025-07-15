@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Module : MonoBehaviour
+abstract public class Module : MonoBehaviour
 {
     public Transform walls;
 
@@ -15,6 +15,7 @@ public class Module : MonoBehaviour
 
     public bool[] openings;
     public bool preventPlacement = false;
+    abstract public bool persistent { get; }
 
     public virtual void Assemble()
     {
@@ -22,7 +23,7 @@ public class Module : MonoBehaviour
         gridTile.GetAdjacentTiles();
     }
 
-    public void Delete()
+    public virtual void Delete()
     {
         if (hazard != null)
         {
@@ -40,8 +41,8 @@ public class Module : MonoBehaviour
                 }
             }
         }
-        GameManager.instance.tilesPlaced--;
         gridTile = null;
+        GameManager.instance.RequestReload();
         Destroy(gameObject);
     }
 

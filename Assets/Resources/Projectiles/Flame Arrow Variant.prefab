@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 106354228232507887, guid: a22bc4ca353275440a23602ce406d023, type: 3}
       propertyPath: effectDuration
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 106354228232507887, guid: a22bc4ca353275440a23602ce406d023, type: 3}
       propertyPath: afterEffects.Array.size

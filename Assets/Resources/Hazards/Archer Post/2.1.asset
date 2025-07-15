@@ -15,4 +15,4 @@ MonoBehaviour:
   currentEntity: {fileID: 1150364527743360389, guid: b976b95eaea4fcb4ea0bdbc605d3d14f, type: 3}
   upgrades:
   - {fileID: 11400000, guid: 5419d1552bfa6454da4e54b7f132bb4f, type: 2}
-  description: Increased range & rate of fire.
+  description: Increased range & rate of fire. Can detect invisible Heroes.

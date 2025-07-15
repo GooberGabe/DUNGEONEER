@@ -369,16 +369,19 @@ MonoBehaviour:
   gridTile: {fileID: 0}
   hazard: {fileID: 0}
   wasChecked: 0
-  adjacents: []
   openings: 
   preventPlacement: 0
   columns: {fileID: 4372951237874626617}
   arches: {fileID: 6104683259871202243}
   bases: {fileID: 1717070498276010727}
+  overlay: {fileID: 0}
+  hoverColor: {r: 0, g: 0, b: 0, a: 0}
+  hover: 0
   waveNum: -1
   allHeroesSpawned: 0
-  pathfinder: {fileID: 3651491919294134097, guid: af2d26b016640fa459a4f56a7168055b, type: 3}
+  pathfinderFab: {fileID: 3651491919294134097, guid: af2d26b016640fa459a4f56a7168055b, type: 3}
   archway: 0
+  connected: 0
 --- !u!4 &1072762764389496402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6523212748345268134, guid: 74f9589a3d7a1e5488ed0be35649629a, type: 3}

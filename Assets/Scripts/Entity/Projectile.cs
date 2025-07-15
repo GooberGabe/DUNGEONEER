@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
     public bool passThroughUnaffectedTypes = false;
     public bool nonentityCollisions = true;
     public float knockback = 0;
+    private bool isAlive = true;
 
     private void Start()
     {
@@ -152,17 +153,20 @@ public class Projectile : MonoBehaviour
 
     protected virtual void CollideSurface(GameObject collision)
     {
-        foreach (GameObject afterEffect in afterEffects)
+        if (isAlive)
         {
-            Transform fx = Instantiate(afterEffect, effectOrigin.transform.position, Quaternion.identity).transform;
-            fx.transform.eulerAngles = Vector3.zero;
-        }
+            foreach (GameObject afterEffect in afterEffects)
+            {
+                Transform fx = Instantiate(afterEffect, effectOrigin.transform.position, Quaternion.identity).transform;
+                fx.transform.eulerAngles = Vector3.zero;
+            }
+        }   
         Delete();
     }
 
     protected virtual void CollideEntity(Entity entity)
     {
-        DealDamage(entity);
+        if (isAlive) DealDamage(entity);
         foreach (GameObject afterEffect in afterEffects)
         {
             Instantiate(afterEffect, effectOrigin.transform.position, Quaternion.identity);
@@ -172,14 +176,18 @@ public class Projectile : MonoBehaviour
 
     public void Delete()
     {
+        isAlive = false;
         if (destroyObject)
         {
             Destroy(gameObject);
         }
         else
         {
-            GetComponent<Renderer>().enabled = false;
-            GetComponent<Collider>().enabled = false;
+            //GetComponent<Renderer>().enabled = false;
+            foreach (Collider col in GetComponents<Collider>())
+            {
+                col.enabled = false;
+            }
             if (GetComponent<ParticleSystem>())
             {
                 ParticleSystem.MainModule mainSys = GetComponent<ParticleSystem>().main;

@@ -16,22 +16,35 @@ public class Spawner : Hazard
     public bool respawnRoundStart = true;
 
     protected List<Entity> monsters = new List<Entity>();
+    protected Entity monsterType;
     
     protected override void Start()
     {
         base.Start();
-        if (respawnRoundStart)
-        {
-            for (int i = 0; i < maxSpawns; i++)
-            {
-                Engage();
-            }
-        }
+        if (respawnRoundStart) SpawnAll();
+        monsterType = creatureToSpawn.GetComponent<Entity>();
+    }
+
+    public override float GetDamage()
+    {
+        return monsterType.GetDamage();
     }
 
     public override string TextDisplay()
     {
-        return "Spawn Count: " + monsters.Count + "/" + maxSpawns;
+        string rate = "";
+        if (respawnDuringRound) rate = "\nSpawn Cooldown: " + cooldownTime + "s";
+        return "Spawn Count: " + maxSpawns
+                +rate;
+    }
+
+    public virtual void SpawnAll()
+    {
+        for (int i = 0; i < maxSpawns; i++)
+        {
+            Engage();
+        }
+        
     }
 
     public override void Engage()
@@ -56,11 +69,10 @@ public class Spawner : Hazard
         StartCooldown();
     }
 
-    public override void Upgrade()
+    public override void Upgrade(Entity upgradedVersion)
     {
         DestroyMonsters();
-        base.Upgrade();
-        Debug.Log("A");
+        base.Upgrade(upgradedVersion);
     }
 
     public override void Sell()
@@ -82,7 +94,6 @@ public class Spawner : Hazard
         base.Update();
         Cleanup();
         CheckEngage();
-            
     }
 
     protected void Cleanup()

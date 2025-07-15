@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  description: 
   hitPoints: 1
   maxHitPoints: 1
   entityName: Spike Trap
@@ -225,6 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  description: 
   hitPoints: 1
   maxHitPoints: 1
   entityName: Spikes

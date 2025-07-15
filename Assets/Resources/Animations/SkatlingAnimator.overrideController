@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SkatlingAnimator
+  m_Controller: {fileID: 9100000, guid: df9882de56b4d6c469ec99ca22d9b695, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: fa78d540ddd9d3d458e683e08a66e85d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7c624c615cc52814dbed39193dc730f3, type: 2}
+  - m_OriginalClip: {fileID: 1881067910185220424, guid: 5d121a3c8d9d64d449c9688b7e62a034, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: a87a31407caf3c4439f7f03cd18bab80, type: 2}

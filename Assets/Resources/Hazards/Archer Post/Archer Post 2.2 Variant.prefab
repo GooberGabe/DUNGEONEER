@@ -197,6 +197,18 @@ PrefabInstance:
       value: Skatling Gun
       objectReference: {fileID: 0}
     - target: {fileID: 1150364527743360389, guid: b976b95eaea4fcb4ea0bdbc605d3d14f, type: 3}
+      propertyPath: fireAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 7c624c615cc52814dbed39193dc730f3, type: 2}
+    - target: {fileID: 1150364527743360389, guid: b976b95eaea4fcb4ea0bdbc605d3d14f, type: 3}
+      propertyPath: animationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150364527743360389, guid: b976b95eaea4fcb4ea0bdbc605d3d14f, type: 3}
+      propertyPath: animatedElement
+      value: 
+      objectReference: {fileID: 6105091339407836265}
+    - target: {fileID: 1150364527743360389, guid: b976b95eaea4fcb4ea0bdbc605d3d14f, type: 3}
       propertyPath: 'firePosition.Array.data[0]'
       value: 
       objectReference: {fileID: 7861205476505500380}
@@ -682,7 +694,7 @@ Animator:
   m_GameObject: {fileID: 6913716567776141011}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4e4e10cd07fe53343862890c215626f3, type: 2}
+  m_Controller: {fileID: 22100000, guid: e96517d6a436e0e49a226c7fe7469cc9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

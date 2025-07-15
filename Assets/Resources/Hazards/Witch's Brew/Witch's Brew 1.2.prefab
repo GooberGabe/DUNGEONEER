@@ -322,7 +322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3955930123117775257, guid: 8f1015f0782bb854aa82ac906acdc526, type: 3}
       propertyPath: cost
-      value: 500
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 3955930123117775257, guid: 8f1015f0782bb854aa82ac906acdc526, type: 3}
       propertyPath: icon
@@ -337,8 +337,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3955930123117775257, guid: 8f1015f0782bb854aa82ac906acdc526, type: 3}
+      propertyPath: spawnRadius
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3955930123117775257, guid: 8f1015f0782bb854aa82ac906acdc526, type: 3}
       propertyPath: upgradeName
-      value: Candlelight Coven
+      value: Runecasting
       objectReference: {fileID: 0}
     - target: {fileID: 3955930123117775257, guid: 8f1015f0782bb854aa82ac906acdc526, type: 3}
       propertyPath: creatureToSpawn

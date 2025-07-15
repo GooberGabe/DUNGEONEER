@@ -322,6 +322,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2656373306640303753, guid: a3687df4d97a9eb46951f757dd7747cf, type: 3}
     - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: description
+      value: A powerful but slow turret.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: upgradeName
       value: 
       objectReference: {fileID: 0}

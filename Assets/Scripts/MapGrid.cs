@@ -27,6 +27,11 @@ public class MapGrid : MonoBehaviour
 
     void Start()
     {
+        
+    }
+
+    public void Initialize()
+    {
         CreateGrid();
         HideTiles();
         SizeOffset();
@@ -38,14 +43,15 @@ public class MapGrid : MonoBehaviour
         transform.position = new Vector3(-gridSize/2, 0, -gridSize/2);
     }
 
-    /// <summary>
-    /// Temporary until level design is implemented.
-    /// </summary>
-    void SetEndpoints()
+    public void SetEndpoints()
     {
-        StartModule startModule = (StartModule)GetTile(6, 6).GetComponent<GridTile>().AddStartModule(0);
-        startModules.Add(startModule);
-        endModule = (EndModule)GetTile(14, 14).GetComponent<GridTile>().AddEndModule();
+        foreach (Vector2 pos in GameManager.instance.GetStartPositions())
+        {
+            StartModule startModule = (StartModule)GetTile((int)pos.x, (int)pos.y).GetComponent<GridTile>().AddStartModule(0);
+            startModules.Add(startModule);
+        }
+        Vector2 end = GameManager.instance.GetEndPosition();
+        endModule = (EndModule)GetTile((int)end.x, (int)end.y).GetComponent<GridTile>().AddEndModule();
     }
 
     void CreateGrid()
@@ -110,6 +116,18 @@ public class MapGrid : MonoBehaviour
         }
     }
 
+    public GameObject GetTile(Vector2 position)
+    {
+        try
+        {
+            return tiles[Mathf.FloorToInt(position.x + (gridSize / 2)), Mathf.FloorToInt(position.y + (gridSize / 2))];
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     public List<Module> GetAllModules()
     {
         List<Module> modules = new List<Module>();
@@ -139,6 +157,7 @@ public class MapGrid : MonoBehaviour
             // If the cursor is NOT touching any UI element
             if (!EventSystem.current.IsPointerOverGameObject())
             {
+                InterfaceManager.instance.menuTooltip.SetButton(null);
                 if (Input.GetMouseButtonDown(0))
                 {
                     InterfaceManager.instance.selectedEntity = null;
@@ -178,7 +197,7 @@ public class MapGrid : MonoBehaviour
 
                             if (Input.GetMouseButtonDown(0))
                             {
-                                prev.Place(prev.transform.position);
+                                prev.Place(prev.transform.position + prev.offset);
                             }
                         }
                         else
@@ -205,12 +224,12 @@ public class MapGrid : MonoBehaviour
                                 }
                                 else
                                 {
-                                    if (selectedTileSquare.module.GetComponent<FlexModule>()!=null)
+                                    if (selectedTileSquare.module.GetComponent<FlexModule>()!=null && !selectedTileSquare.module.persistent)
                                     {
                                         ((FlexModule)selectedTileSquare.module).hover = true;
                                         if (Input.GetMouseButtonDown(0))
                                         {
-                                            selectedTileSquare.module.Delete();
+                                            ClearTile(selectedTileSquare);
                                             preventPlacement = true;
                                         }
                                     }
@@ -267,6 +286,25 @@ public class MapGrid : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ClearTile(GridTile tile)
+    {
+        tile.module.Delete();
+    }
+
+    public void ClearTile(Module module)
+    {
+        module.Delete();
+    }
+
+    public void ClearMap()
+    {
+        foreach (Module module in GetAllModules())
+        {
+            if (!module.persistent) ClearTile(module);
+        }
+        GameManager.instance.RequestReload();
     }
 
     void Highlight(GridTile selectedTileSquare)

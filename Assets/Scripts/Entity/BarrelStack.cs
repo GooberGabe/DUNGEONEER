@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class BarrelStack : Turret
+public class BarrelStack : AnimatedTurret
 {
-    public Transform skeleton;
-    public Vector3 spawnOffset;
+
     protected override void Face(Transform target)
     {
         //base.Face(target);
-        skeleton.LookAt(target);
-        skeleton.transform.eulerAngles = new Vector3(0, NormalizeAngle(skeleton.transform.eulerAngles.y), 0);
+        animatedElement.LookAt(target);
+        animatedElement.transform.eulerAngles = new Vector3(0, NormalizeAngle(animatedElement.transform.eulerAngles.y), 0);
     }
 
     protected override void Update()
@@ -19,32 +18,21 @@ public class BarrelStack : Turret
         base.Update();
     }
 
-    private void LateUpdate()
+    public override float GetRange()
     {
-        skeleton.GetComponent<Animator>().SetBool("Fire", false);
-    }
-
-    public override void Fire()
-    {
-         // Freeze cooldown until the animation has finished.
-        if (GetTarget() != null)
-        {
-            cooldownCounter = -99;
-            skeleton.GetComponent<Animator>().SetBool("Fire",true);
-
-        }
+        return rangeColliders[0].bounds.size.z;
     }
 
     public void Throw()
     {
         cooldownCounter = cooldownTime;
-        Vector3 directionToTarget = skeleton.forward;
+        Vector3 directionToTarget = animatedElement.forward;
 
         GameObject p = Instantiate(projectile, firePosition[0].position + spawnOffset, Quaternion.identity);
         p.GetComponent<Projectile>().source = this;
-        p.GetComponent<Rigidbody>().linearVelocity = skeleton.transform.forward * 4.5f;
-        p.transform.forward = -skeleton.transform.right;
-        Debug.DrawRay(skeleton.position + Vector3.up, directionToTarget, Color.red);
+        p.GetComponent<Rigidbody>().linearVelocity = animatedElement.transform.forward * 4.5f;
+        p.transform.forward = -animatedElement.transform.right;
+        Debug.DrawRay(animatedElement.position + Vector3.up, directionToTarget, Color.red);
         //p.transform.forward = new Vector3(0, directionToTarget.normalized.y, 0);
     }
 }

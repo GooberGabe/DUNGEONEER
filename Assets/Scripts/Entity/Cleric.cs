@@ -7,7 +7,8 @@ public class Cleric : Hero
 {
     protected override void NavigationBehavior()
     {
-        if (GetValidTargets().Count > 0 && cooldownCounter == 0)
+        Debug.Log(GetValidTargets().Count);
+        if (GetValidTargets().Count > 0 && cooldownCounter <= 0)
         {
             cooldownCounter = cooldownTime;
             GetComponent<Animator>().SetBool("Attacking", true);
@@ -17,7 +18,7 @@ public class Cleric : Hero
 
     protected override List<Entity> GetValidTargets()
     {
-        return entitiesInRange.Where(x => ((Creature)x).hitPoints < maxHitPoints).ToList();
+        return entitiesInRange.Where(x => (x.hitPoints < x.maxHitPoints)).ToList();
     }
 
     protected override void Arrive(Transform target)

@@ -50,11 +50,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: d89f350b832315e489ba2ed9951ab406, type: 3}
+  description: Creates a damaging cloud of poison.
   hitPoints: 100
   maxHitPoints: 100
   entityName: Witch's Brew
   upgradeName: 
-  cost: 200
+  cost: 250
+  invisible: 0
   detectedTypes: 03000000
   rangeColliders:
   - {fileID: 1202981588539224814}
@@ -696,6 +698,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: bc6f3cf1ca914b249973b341f1e376c8, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4835078630258379571, guid: 8103635602206c04b8d5dea780e70737, type: 3}
     - target: {fileID: 1950410803469827785, guid: bc6f3cf1ca914b249973b341f1e376c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -3.825847

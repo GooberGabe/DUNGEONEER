@@ -29,11 +29,6 @@ public class GridTile : MonoBehaviour
         }
     }
 
-    private void BuildNavMesh()
-    {
-        GameManager.instance.GetGrid().GetComponent<DungeonBuilder>().BakeNavMesh();
-    }
-
     public void GetAdjacentTiles()
     {
         adjacents = new GridTile[4]
@@ -76,7 +71,6 @@ public class GridTile : MonoBehaviour
         module.gridTile = this;
 
         module.Assemble();
-        BuildNavMesh();
         return module;
     }
 
@@ -87,7 +81,7 @@ public class GridTile : MonoBehaviour
         module.gridTile = this;
 
         module.GetComponent<Module>().Assemble();
-        BuildNavMesh();
+        GameManager.instance.RequestReload();
         GameManager.instance.tilesPlaced++;
         return module;
     }
@@ -99,7 +93,7 @@ public class GridTile : MonoBehaviour
         module.gridTile = this;
         ((StartModule)module).archway = 0;
         module.Assemble();
-        BuildNavMesh();
+        GameManager.instance.ReloadPath(false);
         return module;
         
     }
@@ -111,7 +105,7 @@ public class GridTile : MonoBehaviour
         module.gridTile = this;
 
         module.GetComponent<EndModule>().Assemble();
-        BuildNavMesh();
+        GameManager.instance.ReloadPath(false);
         return module;
 
     }

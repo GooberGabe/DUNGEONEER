@@ -6,16 +6,19 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Experimental.GraphView.Port;
 
 public abstract class Entity : MonoBehaviour
 {
 
     public Sprite icon;
+    public string description;
     public float hitPoints = 1;
     public float maxHitPoints = 1;
     public string entityName;
     public string upgradeName;
     public int cost;
+    public bool invisible = false;
     abstract public EntityType entityType { get; }
     public EntityType[] detectedTypes;
     [SerializeField]
@@ -26,9 +29,16 @@ public abstract class Entity : MonoBehaviour
     protected List<Entity> entitiesInRange = new List<Entity>();
     protected Transform anchorPoint;
 
+    private OpacityController opacityController;
+
     protected virtual void Start()
     {
-        
+        if (invisible)
+        {
+            opacityController = GetComponent<OpacityController>();
+            if (opacityController == null)
+                opacityController = gameObject.AddComponent<OpacityController>();   
+        }
     }
 
     protected virtual void Update()
@@ -44,6 +54,26 @@ public abstract class Entity : MonoBehaviour
             if (entity == null || !entity.enabled || !entity.IsAlive()) entitiesInRange.Remove(entity);
             
         }
+
+        
+
+        if (invisible)
+        {
+            //opacityController.SetOpacity(0);
+            //float opacity = Mathf.Sin(Time.time) * 0.5f + 0.5f; // Oscillate between 0 and 1
+            //opacityController.SetOpacity(opacity);
+        }
+        
+    }
+
+    public virtual float GetDamage()
+    {
+        return 0;
+    }
+
+    public virtual float GetDamageRate()
+    {
+        return 0;
     }
 
     public bool IsAlive()
@@ -56,9 +86,49 @@ public abstract class Entity : MonoBehaviour
         return "";
     }
 
+    public virtual string StatusDisplay()
+    {
+        return "";
+    }
+
     public virtual float GetRange()
     {
-        return 0; // TODO
+        if (rangeColliders == null || rangeColliders.Length == 0)
+            return 0f;
+
+        // Use the first range collider as the primary range indicator
+        Collider primaryCollider = rangeColliders[0];
+        if (primaryCollider == null)
+            return 0f;
+
+        if (primaryCollider is CapsuleCollider capsuleCol)
+        {
+            // Get radius considering global scale
+            Vector3 globalScale = capsuleCol.transform.lossyScale;
+            float scaledRadius = capsuleCol.radius * Mathf.Max(globalScale.x, globalScale.z);
+            return scaledRadius;
+        }
+        else if (primaryCollider is SphereCollider sphereCol)
+        {
+            // Get radius considering global scale
+            Vector3 globalScale = sphereCol.transform.lossyScale;
+            float scaledRadius = sphereCol.radius * Mathf.Max(globalScale.x, Mathf.Max(globalScale.y, globalScale.z));
+            return scaledRadius;
+        }
+        else if (primaryCollider is BoxCollider boxCol)
+        {
+            // For boxes, use the maximum of width and depth (ignoring height)
+            Vector3 globalScale = boxCol.transform.lossyScale;
+            float scaledWidth = boxCol.size.x * globalScale.x;
+            float scaledDepth = boxCol.size.z * globalScale.z;
+
+            // Return half the maximum dimension since size represents full dimensions
+            // but range typically represents radius-like distance from center
+            return Mathf.Max(scaledWidth, scaledDepth) * 0.5f;
+        }
+
+        // Fallback for unsupported collider types
+        return 1f;
     }
 
     public Collider[] GetRangeColliders()
@@ -78,8 +148,10 @@ public abstract class Entity : MonoBehaviour
         Destroy(gameObject); // If alternative behavior is desired, override behavior without calling base
     }
 
-    public virtual void Upgrade()
+    public virtual void Upgrade(Entity upgradedVersion)
     {
+        upgradedVersion.transform.position = transform.position;
+        upgradedVersion.hitPoints = hitPoints;
         Poof(0);
     }
 

@@ -15,6 +15,8 @@ public class FlexModule : Module
     public Color hoverColor;
     public bool hover;
 
+    public override bool persistent => false;
+
     protected virtual void Start()
     {
         if (overlay != null) initialColor = overlay.GetComponent<Renderer>().material.color;
@@ -31,6 +33,13 @@ public class FlexModule : Module
             else overlay.GetComponent<Renderer>().material.color = initialColor;
 
         }
+    }
+
+    public override void Delete()
+    {
+        GameManager.instance.tilesPlaced--;
+        base.Delete();
+        GameManager.instance.gold += GameManager.instance.GetTilePrice();
     }
 
     /// <summary>

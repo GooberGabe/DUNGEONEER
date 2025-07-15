@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class EffectZone : Entity
 {
-    private int frameTick;
-    private float tick;
+    protected int frameTick;
+    protected float tick;
     public float counter;
     public bool areaOn = true;
     public int damage;
@@ -43,7 +43,7 @@ public class EffectZone : Entity
         frameTick++;
     }
 
-    public bool DealDamage(int amount)
+    public virtual bool DealDamage(int amount)
     {
         bool ret = false;
         Debug.Log("--A: Deal Damage");
@@ -53,23 +53,39 @@ public class EffectZone : Entity
             if (entity != null)
             {
                 if (damage > 0) entity.TakeDamage(amount);
-                if (entity.entityType == EntityType.Hero || entity.entityType == EntityType.Monster) 
-                {
-                    for (int i = 0; i < statusEffects.Length; i++)
-                    {
-                        ((Creature)entity).SetStatusEffect(statusEffects[i], effectDuration);
-                    }
-                }
+                HandleStatusEffects(entity);
                 ret = true;
 
             }
         }
         return ret;
     }
+
+    public void HandleStatusEffects(Entity entity)
+    {
+        if (entity.entityType == EntityType.Hero || entity.entityType == EntityType.Monster)
+        {
+            for (int i = 0; i < statusEffects.Length; i++)
+            {
+                ((Creature)entity).SetStatusEffect(statusEffects[i], effectDuration);
+            }
+        }
+    }
+
+    public override float GetDamage()
+    {
+        return damage;
+    }
+
+    public override float GetDamageRate()
+    {
+        return damageInterval;
+    }
 }
 
 public enum StatusEffect
 {
     Burning,
+    Shocked,
     Slowed,
 }

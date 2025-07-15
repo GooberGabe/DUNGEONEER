@@ -24,6 +24,14 @@ PrefabInstance:
       propertyPath: cooldownTime
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: -8733391034584721128, guid: 4d8d932665cf061438ab267a6d808182, type: 3}
+      propertyPath: animationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8733391034584721128, guid: 4d8d932665cf061438ab267a6d808182, type: 3}
+      propertyPath: detectInvisibility
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 785262656257317400, guid: 4d8d932665cf061438ab267a6d808182, type: 3}
       propertyPath: m_Name
       value: Archer Post 2.1 Variant
@@ -35,7 +43,7 @@ PrefabInstance:
     - target: {fileID: 1544938275314657291, guid: 4d8d932665cf061438ab267a6d808182, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 30f6dd02abf8af441aa1d4493e8d1385, type: 2}
+      objectReference: {fileID: 9100000, guid: df9882de56b4d6c469ec99ca22d9b695, type: 2}
     - target: {fileID: 1544938275314657291, guid: 4d8d932665cf061438ab267a6d808182, type: 3}
       propertyPath: m_UpdateMode
       value: 0

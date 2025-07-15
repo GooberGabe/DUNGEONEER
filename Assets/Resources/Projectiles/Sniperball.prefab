@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sniperball
       objectReference: {fileID: 0}
+    - target: {fileID: 3417604518041377576, guid: 2a732f1c0ecdf1e44a210282f527fd2b, type: 3}
+      propertyPath: m_Center.z
+      value: -0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 5211752970696225070, guid: 2a732f1c0ecdf1e44a210282f527fd2b, type: 3}
       propertyPath: speed
       value: 10
@@ -110,7 +114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7231161441522660518, guid: 2a732f1c0ecdf1e44a210282f527fd2b, type: 3}
       propertyPath: m_Radius
-      value: 0.07
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7231161441522660518, guid: 2a732f1c0ecdf1e44a210282f527fd2b, type: 3}
       propertyPath: m_Center.z

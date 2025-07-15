@@ -338,25 +338,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a507b0e12467f4f8a63f606211871d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  description: 
   hitPoints: 50
   maxHitPoints: 50
   entityName: Cleric
   upgradeName: 
   cost: 20
   detectedTypes: 03000000
+  rangeColliders: []
   upgradeTree: {fileID: 0}
   mainDestination: {fileID: 0}
   targetClose: 1
   holdPosition: {fileID: 0}
   firePosition: []
   projectile: {fileID: 3828457191703017402, guid: 61e9c0267fa067940b3e4596a60e6767, type: 3}
-  cooldownTime: 7
-  strength: 5
+  cooldownTime: 5
+  strength: 15
   speed: 6
   size: 0
   behavior: 0
   subDestination: {fileID: 0}
-  isAlive: 1
   isMoving: 0
   foes: []
 --- !u!136 &7849322073812024055

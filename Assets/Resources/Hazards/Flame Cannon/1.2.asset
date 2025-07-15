@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentEntity: {fileID: 8173362628336995338, guid: a23599161cbdb244c931481d25733327, type: 3}
   upgrades: []
-  description: Drastically higher range; increased projectile damage and speed.
+  description: Drastically higher range; increased projectile damage and speed. Can
+    detect invisible Heroes.

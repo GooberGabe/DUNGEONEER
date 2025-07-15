@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce74a5ad3ad855141a026572edaa9dee, type: 3}
+  m_Name: Level01
+  m_EditorClassIdentifier: 
+  waveData:
+  - {fileID: 4900000, guid: 88952599f2e76b0409d4716eb61d29d4, type: 3}
+  startPositions:
+  - {x: 6, y: 6}
+  endPosition: {x: 14, y: 14}
+  roomModules:
+  - {fileID: 6308899048452200888, guid: 72ff4428240d8f34aac2bae5998f9093, type: 3}
+  - {fileID: 7927779216380029972, guid: bd8096129eb442b4ea991d23dd26ff90, type: 3}
+  - {fileID: 6601411189995971744, guid: 0ec284b483c15754f92a138e0b6035d2, type: 3}

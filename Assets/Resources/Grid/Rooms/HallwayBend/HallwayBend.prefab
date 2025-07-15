@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4805c0a9f3bb96d45aa654f368dd69fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: b7d9ec9341403814aaa419efe574a218, type: 3}
   roomName: Bend
 --- !u!1001 &4469153949626584412
 PrefabInstance:

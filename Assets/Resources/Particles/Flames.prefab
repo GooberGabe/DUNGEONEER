@@ -71,20 +71,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9a552c618f64b4b8fceaf0acf8bc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  description: 
   hitPoints: 1
   maxHitPoints: 1
   entityName: Flames
   upgradeName: 
   cost: 0
   detectedTypes: 0300000004000000
+  rangeColliders: []
   upgradeTree: {fileID: 0}
-  counter: 5
+  counter: 4
   areaOn: 1
   damage: 0
   damageInterval: 0
   destroyObject: 1
   statusEffects: 00000000
-  effectDuration: 300
+  effectDuration: 4
 --- !u!1001 &1921285636495412946
 PrefabInstance:
   m_ObjectHideFlags: 0

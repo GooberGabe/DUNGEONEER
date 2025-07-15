@@ -498,7 +498,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 541524635501926470, guid: 9854f1d761bc69046b9649e1fb32ba7d, type: 3}
       propertyPath: cost
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 541524635501926470, guid: 9854f1d761bc69046b9649e1fb32ba7d, type: 3}
       propertyPath: icon
@@ -509,8 +509,12 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 541524635501926470, guid: 9854f1d761bc69046b9649e1fb32ba7d, type: 3}
+      propertyPath: spawnRadius
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 541524635501926470, guid: 9854f1d761bc69046b9649e1fb32ba7d, type: 3}
       propertyPath: upgradeName
-      value: Witchcraft
+      value: Forbidden Knowledge
       objectReference: {fileID: 0}
     - target: {fileID: 541524635501926470, guid: 9854f1d761bc69046b9649e1fb32ba7d, type: 3}
       propertyPath: cooldownTime

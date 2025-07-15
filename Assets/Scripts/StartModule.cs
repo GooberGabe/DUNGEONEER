@@ -3,27 +3,30 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.UI.Image;
 
 public class StartModule : FlexModule
 {
     private LevelWaves level;
     private List<List<GameObject>> heroSpawns;
-    private int counter = 0;
+    private float counter = 0;
     public int waveNum = -1;
     private int spawnNum = 0;
     public bool allHeroesSpawned = false;
-    public GameObject pathfinder;
+    public GameObject pathfinderFab;
+    private Pathfinder pathfinder;
     public int archway;
+    public bool connected;
+    public override bool persistent => true;
 
     protected override void Start()
     {
         base.Start();
         preventPlacement = true;
+        connected = false;
         level = GameManager.instance.GetComponent<LevelReader>().Read(this);
         heroSpawns = GameManager.instance.GetComponent<LevelReader>().GetWaves(level);
         GameManager.instance.GetGrid().GetComponent<DungeonBuilder>().BakeNavMesh();
-
-        SpawnPathfinder();
     
         openings = new bool[4] { false, false, false, false };
         openings[archway] = true;
@@ -40,9 +43,10 @@ public class StartModule : FlexModule
         // If during round
         if (GameManager.instance.playRound)
         {
-            counter++;
-            
-            if (counter % ((11 - level.waves[waveNum].spawnRate) * 50) == 0 && waveNum < heroSpawns.Count)
+            counter += Time.deltaTime;
+
+            //(counter % ((11 - level.waves[waveNum].spawnRate) * 50) == 0
+            if (counter > (11 - level.waves[waveNum].spawnRate) * 0.5f && waveNum < heroSpawns.Count)
             {
                 if (spawnNum < heroSpawns[waveNum].Count)
                 {
@@ -50,6 +54,7 @@ public class StartModule : FlexModule
 
                     spawnNum++;
                 }
+                counter = 0;
             }
             // If all heroes have been spawned and all heroes have been killed
             if (spawnNum >= heroSpawns[waveNum].Count)
@@ -97,7 +102,30 @@ public class StartModule : FlexModule
 
     private void SpawnPathfinder()
     {
-        Pathfinder p = Instantiate(pathfinder, transform.position, Quaternion.identity).GetComponent<Pathfinder>();
+        Pathfinder p = Instantiate(pathfinderFab, transform.position, Quaternion.identity).GetComponent<Pathfinder>();
+        p.origin = this;
+        pathfinder = p;
+    }
+
+    public void ValidateLocalPath()
+    {
+        connected = false;
+        if (!pathfinder)
+        {
+            SpawnPathfinder();
+        }
+    }
+
+    public void OnPathConnect()
+    {
+        connected = true;
+        GameManager.instance.ConfirmPathValidation();
+    }
+
+    public void OnPathError()
+    {
+        connected = false;
+        GameManager.instance.ConfirmPathValidation();
     }
 
 }

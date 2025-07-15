@@ -16,3 +16,5 @@ MonoBehaviour:
   upgrades:
   - {fileID: 11400000, guid: 9c6b13eb7a13e3e4da034d2431c2ff2d, type: 2}
   - {fileID: 11400000, guid: 7adc81d25cb238145bc7606c7d3796b3, type: 2}
+  description: 
+  iconOverride: {fileID: 21300000, guid: 2b6120ca9875dd64295c343990b06b19, type: 3}

@@ -28,8 +28,8 @@ public class Creature : DynamicEntity
     protected override void Start()
     {
         base.Start();
-        statusEffectDurations = new float[2];
-        effectDisplays = new GameObject[1];
+        statusEffectDurations = new float[3];
+        effectDisplays = new GameObject[2];
 
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -42,6 +42,11 @@ public class Creature : DynamicEntity
         b.SetActive(false);
         effectDisplays[0] = b;
 
+        GameObject s = (GameObject)Instantiate(Resources.Load("Particles/StatusShock"), transform.position, Quaternion.identity, transform);
+        s.transform.localScale = Vector3.one;
+        s.SetActive(false);
+        effectDisplays[1] = s;
+
         GameObject t = new GameObject();
         t.transform.parent = transform;
         t.name = "Tracking Position";
@@ -53,6 +58,7 @@ public class Creature : DynamicEntity
     {
         base.Update();
         float effectiveSpeed = speed;
+        animator.SetBool("Shock", false);
 
         for (int i = 0; i < statusEffectDurations.Length; i++)
         {
@@ -65,9 +71,14 @@ public class Creature : DynamicEntity
                 {
                     TakeDamage(Time.deltaTime * 3, true);
                 }
+                if (i == (int)StatusEffect.Shocked)
+                {
+                    effectiveSpeed = 0f;
+                    animator.SetBool("Shock", true);
+                }
                 if (i == (int)StatusEffect.Slowed)
                 {
-                    effectiveSpeed *= .5f;
+                    effectiveSpeed *= .75f;
                 }
             }
             if (i < effectDisplays.Length) effectDisplays[i].SetActive(statusOn);
@@ -95,11 +106,26 @@ public class Creature : DynamicEntity
 
     }
 
+    public bool HasStatusEffect(StatusEffect status)
+    {
+        return (statusEffectDurations[(int)status] > 0);
+    }
+
+    public override float GetDamage()
+    {
+        return strength;
+    }
+
     public override string TextDisplay()
     {
-        return hitPoints.ToString() + "/" + maxHitPoints.ToString() + " HP" +
-               "\nDamage: " + strength.ToString() +
+        return maxHitPoints.ToString() + " HP" +
+               "\nDamage: " + GetDamage() +
                "\nSpeed:  " + speed.ToString();
+    }
+
+    public override string StatusDisplay()
+    {
+        return hitPoints.ToString() + "/" + maxHitPoints.ToString() + " HP";
     }
 
     public float GetStatusEffect(StatusEffect effect)
@@ -107,7 +133,7 @@ public class Creature : DynamicEntity
         return statusEffectDurations[(int)effect];
     }
 
-    public void SetStatusEffect(StatusEffect effect, float duration)
+    public virtual void SetStatusEffect(StatusEffect effect, float duration)
     {
         statusEffectDurations[(int)effect] = duration;
     }
@@ -221,10 +247,16 @@ public class Creature : DynamicEntity
     protected override void Die()
     {
         //base.Die();
+        animator.SetBool("Alive", false);
+        animator.SetBool("Shock", false);
+        for (int i = 0; i < statusEffectDurations.Length; i++) 
+        {
+            statusEffectDurations[i] = 0;
+        }
+
         if (isAlive)
         {
-            animator.SetBool("Alive", false);
-            foreach(Collider col in GetComponents<Collider>())
+            foreach (Collider col in GetComponents<Collider>())
             {
                 col.enabled = false;
             }

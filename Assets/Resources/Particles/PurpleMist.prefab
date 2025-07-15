@@ -47,18 +47,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 0}
+  description: 
   hitPoints: 1
   maxHitPoints: 1
   entityName: Purple Mist
   upgradeName: 
   cost: 0
+  invisible: 0
   detectedTypes: 03000000
+  rangeColliders: []
   upgradeTree: {fileID: 0}
-  counter: 6
+  counter: 7
   areaOn: 1
   damage: 1
-  damageInterval: 0.4
-  destroyObject: 0
+  damageInterval: 0.35
+  destroyObject: 1
   statusEffects: 
   effectDuration: 0
 --- !u!136 &228132930339437208

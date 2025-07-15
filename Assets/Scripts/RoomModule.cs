@@ -1,10 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomModule : Module
 {
+
+    public override bool persistent => false;
+    public GameObject buttonRef;
+
     void Start()
     {
         SetOpenings();
@@ -22,7 +27,12 @@ public class RoomModule : Module
         //    
         //}
         wallsList[3].transform.SetAsFirstSibling();
-        
+    }
+
+    public override void Delete()
+    {
+        buttonRef.gameObject.SetActive(true);
+        base.Delete();
     }
 
     public void SetOpenings()
@@ -43,7 +53,6 @@ public class RoomModule : Module
             {
                 if (tile.module != null)
                 {
-                    Debug.Log(tile.module.name, tile.module);
                     if (!tile.module.wasChecked) tile.module.Assemble();
                 }
             }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UpgradeButton : PurchaseButton
 {
@@ -28,5 +29,11 @@ public class UpgradeButton : PurchaseButton
         {
             InterfaceManager.instance.selectedUpgrade = this;
         }
+    }
+
+    public override (string head, string body) TextDisplay()
+    {
+        Entity entity = purchaseFab.GetComponent<Entity>();
+        return (entity.upgradeName, entity.TextDisplay());
     }
 }

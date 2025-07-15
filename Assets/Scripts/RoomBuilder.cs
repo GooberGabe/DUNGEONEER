@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class RoomBuilder : MonoBehaviour
 {
+    public Sprite icon;
     public string roomName;
     private void Start()
     {
@@ -24,6 +26,8 @@ public class RoomBuilder : MonoBehaviour
                 child.transform.localPosition = Vector3.zero;
             }
         }
+
+        GameManager.instance.RequestReload();
 
         Destroy(gameObject);
     }

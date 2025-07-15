@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4805c0a9f3bb96d45aa654f368dd69fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 9bb1d51cd401d9c4280d1f8af4abba03, type: 3}
   roomName: Square
 --- !u!1001 &1365193959461583930
 PrefabInstance:

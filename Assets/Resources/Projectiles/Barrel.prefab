@@ -146,6 +146,8 @@ MonoBehaviour:
   autoMove: 0
   affectedTypes: 03000000
   afterEffects: []
+  statusEffects: 
+  effectDuration: 0
   source: {fileID: 0}
   effectOrigin: {fileID: 0}
   destroyObject: 1

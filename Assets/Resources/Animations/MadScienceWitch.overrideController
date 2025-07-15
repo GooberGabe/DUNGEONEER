@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MadScienceWitch
+  m_Controller: {fileID: 9100000, guid: 50d11d75755d8cd449bd9fc9e3fbaf40, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 5008348457023331957, guid: f3dd559a501b308499fb0035bb23e934, type: 3}
+    m_OverrideClip: {fileID: 5008348457023331957, guid: 237ccc1cc125aee44bba47119e794cc2, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 3cf8c7aecf567524184c4f464485ca69, type: 2}
+    m_OverrideClip: {fileID: 9061338213343248790, guid: edbf96b34d311084185386f142e52b9b, type: 3}

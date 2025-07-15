@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 3b8c82daec04e9d44a487e532d968de2, type: 3}
+  description: Spawns monsters to defend your Dungeon.
   hitPoints: 100
   maxHitPoints: 100
   entityName: Graveyard

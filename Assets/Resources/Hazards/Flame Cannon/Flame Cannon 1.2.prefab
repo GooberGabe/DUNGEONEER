@@ -301,6 +301,10 @@ PrefabInstance:
       propertyPath: cooldownTime
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6007003632097156645, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
+      propertyPath: detectInvisibility
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6992433605001656919, guid: 3349ca8674b13074caf0ae578b6db960, type: 3}
       propertyPath: m_Name
       value: Flame Cannon 1.2

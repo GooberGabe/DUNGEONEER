@@ -16,12 +16,19 @@ public class Trap : Hazard
     public float disengageTime = 10;
     private int uses;
 
-
     public override string TextDisplay()
     {
-        return  "Charges: " + uses + "/" + maxUses +
-              "\nDamage:  " + hitBox.GetComponent<EffectZone>().damage.ToString();
+        return
+              "Damage: " + GetDamage() +
+              (maxUses > 0 ? "\nCharges: " + maxUses : "") +
+              (cooldownTime > 0 ? "\nCooldown Time: " + cooldownTime + "s" : "");
     }
+
+    public override string StatusDisplay()
+    {
+        return (maxUses > 0 ? "\nCharges: " + uses + "/" + maxUses : "");
+    }
+
     public override void Engage()
     {
         base.Engage();
@@ -45,6 +52,11 @@ public class Trap : Hazard
             Destroy(gameObject, 0.1f);
             Poof();
         }
+    }
+
+    public override float GetDamage()
+    {
+        return hitBox.GetComponent<EffectZone>().damage;
     }
 
     public void Disjoint()

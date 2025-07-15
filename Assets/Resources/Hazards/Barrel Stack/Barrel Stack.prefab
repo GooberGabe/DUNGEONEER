@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 94e2196abeccc0c49ab952c847a1af10, type: 3}
+  description: Barrels can roll through multiple targets.
   hitPoints: 1
   maxHitPoints: 1
   entityName: Barrel Stack
@@ -76,8 +77,10 @@ MonoBehaviour:
   - {fileID: 6497637968240110430}
   projectile: {fileID: 1488734068347579720, guid: 436696c0892aa124cb739937c0191868, type: 3}
   cooldownTime: 3.5
-  skeleton: {fileID: 1591266493480716485}
+  animatedElement: {fileID: 1591266493480716485}
   spawnOffset: {x: 0, y: 0, z: 0}
+  fireAnimation: {fileID: 7400000, guid: 2e008b239b2b75d4dac03ed256deaa15, type: 2}
+  animationSpeed: 1
 --- !u!136 &7219683719402794666
 CapsuleCollider:
   m_ObjectHideFlags: 0

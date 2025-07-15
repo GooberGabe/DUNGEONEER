@@ -7,6 +7,7 @@ public class PlacementPreview : MonoBehaviour
     public GameObject placement;
     public bool snapToGrid;
     public GameObject buttonRef;
+    public Vector3 offset;
 
     private GridTile gridTile;
 
@@ -42,7 +43,9 @@ public class PlacementPreview : MonoBehaviour
 
     protected virtual int GetCost()
     {
-        return placement.GetComponent<Entity>().cost;
+        Entity entity = placement.GetComponent<Entity>();
+        if (entity) return entity.cost;
+        else return 0;
     }
 
     public void Place(Vector3 pos)
@@ -59,7 +62,11 @@ public class PlacementPreview : MonoBehaviour
 
     protected virtual void _Place(Vector3 pos)
     {
-        if (placement.GetComponent<Entity>().entityType == EntityType.Monster)
+        if (!placement.GetComponent<Entity>())
+        {
+            Instantiate(placement, pos, placement.transform.rotation);
+        }
+        else if (placement.GetComponent<Entity>().entityType == EntityType.Monster)
         {
             GameManager.instance.Spawn(placement, pos);
         }

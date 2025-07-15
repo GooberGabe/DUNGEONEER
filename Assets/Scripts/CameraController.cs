@@ -12,10 +12,12 @@ public class CameraController : MonoBehaviour
     public float damping = 5f; // Damping factor for smooth panning
     public Vector2 panBoundsMin; // Minimum bounds for camera panning
     public Vector2 panBoundsMax; // Maximum bounds for camera panning
+
     private Vector3 targetPosition; // Target position for the camera to move towards
     private Vector3 velocity = Vector3.zero; // Velocity for damping
     private float currentZoom; // Current zoom level
     private Vector3 dragOrigin; // Origin point for the drag operation
+
     public GameObject canvas;
     private GraphicRaycaster raycaster;
     public EventSystem eventSystem;
@@ -36,8 +38,9 @@ public class CameraController : MonoBehaviour
         }
         else if (Input.GetMouseButton(2)) // Middle mouse button held
         {
-            // Calculate zoom factor - higher zoom (smaller orthographic size) means less sensitive panning
-            float zoomFactor = currentZoom / minZoom;
+            // Calculate zoom factor - when more zoomed in (smaller orthographic size), reduce panning speed
+            // This creates an inverse relationship: smaller zoom = slower panning
+            float zoomFactor = currentZoom / maxZoom; // Normalized zoom factor (0 to 1)
 
             Vector3 delta = new Vector3(
                 -(Input.mousePosition.x - dragOrigin.x) * panSpeed * Time.deltaTime * zoomFactor,
@@ -59,10 +62,8 @@ public class CameraController : MonoBehaviour
         }
 
         // Handle camera zooming
-
         PointerEventData pointerData = new PointerEventData(eventSystem);
         pointerData.position = Input.mousePosition;
-
         List<RaycastResult> results = new List<RaycastResult>();
         raycaster.Raycast(pointerData, results);
 
@@ -72,7 +73,6 @@ public class CameraController : MonoBehaviour
             currentZoom -= scrollInput * zoomSpeed;
             currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
         }
-            
 
         // Interpolate camera position and zoom
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, damping);

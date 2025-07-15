@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DynamicEntity : Entity
@@ -7,6 +8,7 @@ public class DynamicEntity : Entity
     public override EntityType entityType => throw new System.NotImplementedException();
 
     public Transform mainDestination;
+    public bool detectInvisibility = false;
     public bool targetClose = true;
     public Transform holdPosition;
     public Transform[] firePosition;
@@ -44,7 +46,8 @@ public class DynamicEntity : Entity
 
     protected virtual List<Entity> GetValidTargets()
     {
-        return entitiesInRange;
+        if (detectInvisibility) return entitiesInRange;
+        else return entitiesInRange.Where(x => !x.invisible).ToList();
     }
 
     protected virtual void Face(Transform target)
@@ -69,6 +72,11 @@ public class DynamicEntity : Entity
         {
             trackingPosition = transform;
         }
+    }
+
+    public override float GetDamageRate()
+    {
+        return cooldownTime;
     }
 
     public virtual void Fire()

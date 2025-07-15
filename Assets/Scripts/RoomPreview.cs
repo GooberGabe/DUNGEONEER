@@ -22,10 +22,11 @@ public class RoomPreview : PlacementPreview
         {
             for (int i = 0; i < rotations; i++) child.Rotate();
             child.SetOpenings();
+            child.buttonRef = buttonRef;
             
         }
 
-        Destroy(buttonRef);
+        buttonRef.SetActive(false);
 
     }
 

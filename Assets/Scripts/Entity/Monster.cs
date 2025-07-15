@@ -35,7 +35,7 @@ public class Monster : Creature
 
     protected override List<Entity> GetValidTargets()
     {
-        return entitiesInRange.Where(x => x.entityType == EntityType.Hero || x.entityType == EntityType.Monster).ToList().OrderBy(
+        return base.GetValidTargets().Where(x => x.entityType == EntityType.Hero || x.entityType == EntityType.Monster).ToList().OrderBy(
             x => -Vector3.Distance(transform.position, x.transform.position) - ((Creature)x).foes.Count).ToList();
     }
 

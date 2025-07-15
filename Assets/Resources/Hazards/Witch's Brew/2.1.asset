@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef6ad7abe7e0854ba1718f0569aedb3, type: 3}
+  m_Name: 2.1
+  m_EditorClassIdentifier: 
+  currentEntity: {fileID: 9120844575295695615, guid: d1658ab6ce59a4b40baea8564511230b, type: 3}
+  upgrades:
+  - {fileID: 11400000, guid: 9d26ae529ba88bc4c8c6ad42aa8a4f2b, type: 2}
+  description: Summons forth lightning that can affect up to three Heroes at once.

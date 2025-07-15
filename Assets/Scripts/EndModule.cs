@@ -6,6 +6,7 @@ public class EndModule : FlexModule
 {
     public GameObject dragonFab;
     public Monster dragonRef;
+    public override bool persistent => true;
 
     protected override void Start()
     {

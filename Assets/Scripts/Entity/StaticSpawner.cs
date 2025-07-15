@@ -3,7 +3,43 @@ using UnityEngine;
 
 public class StaticSpawner : Spawner
 {
-    public override EntityType entityType { get; } = EntityType.Turret; // This tower should be treated like a turret even though it has the behavior of a Spawner.
+    //public override EntityType entityType { get; } = EntityType.Turret; // This tower should be treated like a turret even though it has the behavior of a Spawner.
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    public override string TextDisplay()
+    {
+        return
+               "Range:  " + GetRange() +
+               "\nDamage: " + Mathf.Round(GetDamage() / GetDamageRate() * 10.0f) * 0.1f + "/s" +
+               "\nDuration: " + GetDuration();
+               
+    }
+
+    private string GetDuration()
+    {
+        float c = creatureToSpawn.GetComponent<EffectZone>().counter;
+        return c < 0 ? "Unlimited" : c + "s" + "\nCooldown: " + cooldownTime + "s";
+    }
+
+    public override float GetDamage()
+    {
+        return creatureToSpawn.GetComponent<Entity>().GetDamage();
+    }
+
+    public override float GetDamageRate()
+    {
+        return creatureToSpawn.GetComponent<Entity>().GetDamageRate();
+    }
+
+    public override void SpawnAll()
+    {
+        if (respawnRoundStart) Engage();
+    }
+
     public override void Engage()
     {
         for (int i = 0; i < maxSpawns; i++)
@@ -18,7 +54,6 @@ public class StaticSpawner : Spawner
                 0,
                 Mathf.Cos(angle) * spawnRadius
             );
-            
 
             // Check if the tile is valid
             if (GameManager.instance.grid.GetTile(pos) != null)

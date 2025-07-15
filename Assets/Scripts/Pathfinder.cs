@@ -7,6 +7,7 @@ public class Pathfinder : MonoBehaviour
 {
     private NavMeshAgent agent;
     private Vector3 target;
+    public StartModule origin;
 
     void Start()
     {
@@ -21,11 +22,20 @@ public class Pathfinder : MonoBehaviour
         {
             FoundPath();
         }
+        else if (agent.path.status == NavMeshPathStatus.PathPartial || agent.path.status == NavMeshPathStatus.PathInvalid)
+        {
+            PathError();
+        }
+    }
+
+    void PathError()
+    {
+        origin.OnPathError();
     }
 
     void FoundPath()
     {
-        GameManager.instance.isValidPath = true;
+        origin.OnPathConnect();
         Destroy(gameObject);
     }
 }

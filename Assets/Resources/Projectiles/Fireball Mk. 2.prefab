@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6663826044968254509, guid: a3687df4d97a9eb46951f757dd7747cf, type: 3}
       propertyPath: m_Radius
-      value: 0.07
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 6663826044968254509, guid: a3687df4d97a9eb46951f757dd7747cf, type: 3}
       propertyPath: m_Center.z
@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8102900184025856421, guid: a3687df4d97a9eb46951f757dd7747cf, type: 3}
       propertyPath: speed
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8102900184025856421, guid: a3687df4d97a9eb46951f757dd7747cf, type: 3}
       propertyPath: damage

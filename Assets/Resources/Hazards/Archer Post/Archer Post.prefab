@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 57349a7137f1b3445800c5907e1109c3, type: 3}
+  description: A reliable but weak turret.
   hitPoints: 1
   maxHitPoints: 1
   entityName: Archer Post
@@ -133,9 +134,11 @@ MonoBehaviour:
   firePosition:
   - {fileID: 3804382234868268144}
   projectile: {fileID: 8466116040775332065, guid: a22bc4ca353275440a23602ce406d023, type: 3}
-  cooldownTime: 0.5
-  skeleton: {fileID: 5806202171498003691}
+  cooldownTime: 0.3
+  animatedElement: {fileID: 5806202171498003691}
   spawnOffset: {x: 0, y: 0, z: 0}
+  fireAnimation: {fileID: 7400000, guid: fa78d540ddd9d3d458e683e08a66e85d, type: 2}
+  animationSpeed: 1
 --- !u!1 &2634358596891821475
 GameObject:
   m_ObjectHideFlags: 0

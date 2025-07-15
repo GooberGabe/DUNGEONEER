@@ -1,13 +1,38 @@
+using NUnit.Framework;
+using NUnit.Framework.Constraints;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InterfaceManager : MonoBehaviour
 {
     public PlacementPreview currentPreview;
-    public Entity selectedEntity;
+
+    private Entity _selectedEntity;
+    public Entity selectedEntity
+    {
+        get
+        {
+            return _selectedEntity;
+        }
+
+        set
+        {
+            _selectedEntity = value;
+            if (value == null) return;
+            if (value.entityType == EntityType.Turret)
+            {
+                UpdateDropdownForCurrentTurret();
+            } 
+        }   
+    }
+
     public UpgradeButton selectedUpgrade;
     public UpgradePanel leftPanel;
     public ConstructionPanel constructionPanel;
@@ -17,11 +42,14 @@ public class InterfaceManager : MonoBehaviour
     public TextMeshProUGUI messageText;
     public TextMeshProUGUI tilePlacementText;
     public CollapsibleManager rightPanel;
+    public TMP_Dropdown priorityDropdown;
     public Button playRoundButton;
     public MenuTooltip menuTooltip;
+    public Transform abilityCardRow;
 
-    public Color sellColor;
-    public Color upgradeColor;
+    public Sprite redButton;
+    public Sprite greenButton;
+    public GameObject buildButtonPrefab;
 
     private List<UpgradeTier> tiers = new List<UpgradeTier>();
 
@@ -31,12 +59,15 @@ public class InterfaceManager : MonoBehaviour
 
     private int counter;
     private int messageTime;
+    private bool isUpdatingDropdown = false;
 
     private void Start()
     {
         instance = this;
         startModule = GameManager.instance.GetGrid().startModules[0];
         messageText.gameObject.SetActive(false);
+        SetPriorityList();
+        DisplayRoomModules();
     }
 
     private void Update()
@@ -67,24 +98,34 @@ public class InterfaceManager : MonoBehaviour
             leftPanel.Show();
 
             leftPanel.title.text = selectedEntity.entityName;
-            leftPanel.description.text = selectedEntity.TextDisplay();
+            leftPanel.description.text = selectedEntity.StatusDisplay();
+
+            if (selectedEntity.entityType == EntityType.Turret)
+            {
+                priorityDropdown.gameObject.SetActive(true);
+            }
+            else
+            {
+                priorityDropdown.gameObject.SetActive(false);
+            }
+
 
             if (selectedUpgrade == null)
             {
-                leftPanel.sellButton.gameObject.SetActive(selectedEntity.entityType != EntityType.Hero && selectedEntity.cost > 0);
+                leftPanel.sellButton.gameObject.SetActive(selectedEntity.entityType != EntityType.Monster && selectedEntity.entityType != EntityType.Hero && selectedEntity.cost > 0);
                 leftPanel.sellButton.interactable = !GameManager.instance.playRound;
                 leftPanel.sellButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Sell (" + (selectedEntity.cost - 10).ToString() + " Gold)";
-                leftPanel.sellButton.GetComponent<Image>().color = sellColor;
+                leftPanel.sellButton.GetComponent<Image>().sprite = redButton;
                 leftPanel.details.text = "";
             }
             else
             {
                 Entity upgrade = selectedUpgrade.purchaseFab.GetComponent<Entity>();
-                leftPanel.sellButton.gameObject.SetActive(selectedEntity.entityType != EntityType.Hero && selectedEntity.cost > 0);
+                leftPanel.sellButton.gameObject.SetActive(selectedEntity.entityType != EntityType.Hero && selectedEntity.upgradeTree != null);
                 int cost = upgrade.cost;
                 leftPanel.sellButton.interactable = GameManager.instance.gold >= cost;
-                leftPanel.sellButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = upgrade.upgradeName+" (" + (cost).ToString() + " Gold)";
-                leftPanel.sellButton.GetComponent<Image>().color = upgradeColor;
+                leftPanel.sellButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (cost).ToString() + " Gold";
+                leftPanel.sellButton.GetComponent<Image>().sprite = greenButton;
                 leftPanel.details.text = upgrade.upgradeTree.FindNodeWithEntity(upgrade).description;
             }
 
@@ -109,12 +150,65 @@ public class InterfaceManager : MonoBehaviour
         int maxTiles = GameManager.instance.maxTiles;
         int price = GameManager.instance.GetTilePrice();
         tilePlacementText.text =  numTiles+ "/" + maxTiles + "\nCost: "+price;
-        if (price > 0) tilePlacementText.color = Color.red;
+        if (numTiles > maxTiles) tilePlacementText.color = Color.red;
         else tilePlacementText.color = Color.white;
 
         // -- Play Button
         playRoundButton.interactable = GameManager.instance.isValidPath;
 
+    }
+
+    public void DisplayRoomModules()
+    {
+        List<RoomPreview> rooms = GameManager.instance.GetRoomModules();
+        foreach (RoomPreview prev in rooms)
+        {
+            BuildButton b = Instantiate(buildButtonPrefab, constructionPanel.buildContent).GetComponent<BuildButton>();
+            b.previewFab = prev.gameObject;
+            b.purchaseFab = prev.placement.gameObject;
+            b.icon.sprite = prev.placement.GetComponent<RoomBuilder>().icon;
+        }
+    }
+
+    private void SetPriorityList()
+    {
+        /*
+        List<string> enumList = Enum.GetValues(typeof(PriorityType))
+                                       .Cast<string>()
+                                       .ToList();
+        priorityDropdown.ClearOptions();
+        priorityDropdown.AddOptions(enumList);
+        */
+    }
+
+    public void PriorityStateChange(int dropdownIndex)
+    {
+        // Prevent infinite loops when we're updating the dropdown programmatically
+        if (isUpdatingDropdown || selectedEntity == null || selectedEntity.entityType != EntityType.Turret) return;
+
+        // Update the turret's priority
+        ((Turret)selectedEntity).priority = (PriorityType)dropdownIndex;
+
+        Debug.Log($"Turret priority changed: {dropdownIndex}");
+    }
+
+    public void UpdateDropdownForCurrentTurret()
+    {
+        if (selectedEntity == null || selectedEntity.entityType != EntityType.Turret) return;
+
+        isUpdatingDropdown = true;
+
+        // Find the index that matches the turret's current priority
+        Turret turret = (Turret)selectedEntity;
+        int currentPriorityIndex = (int)turret.priority;
+        
+        // Set dropdown to current turret's priority (or 0 if not found)
+        priorityDropdown.value = currentPriorityIndex >= 0 ? currentPriorityIndex : 0;
+
+        // Refresh the dropdown display
+        priorityDropdown.RefreshShownValue();
+
+        isUpdatingDropdown = false;
     }
 
     public void DisplayUpgradeTree(Entity selectedEntity)
@@ -198,22 +292,14 @@ public class InterfaceManager : MonoBehaviour
     private void Upgrade()
     {
         GameManager.instance.gold -= selectedUpgrade.purchaseFab.GetComponent<Entity>().cost;
-        if (selectedUpgrade.entityToUpgrade.entityType != EntityType.Monster)
-        {
-            Entity newEntity = Instantiate(selectedUpgrade.purchaseFab).GetComponent<Entity>();
-            newEntity.transform.position = selectedUpgrade.entityToUpgrade.transform.position;
-            newEntity.hitPoints = selectedUpgrade.entityToUpgrade.hitPoints;
+        Entity newEntity = Instantiate(selectedUpgrade.purchaseFab).GetComponent<Entity>();
 
-            selectedUpgrade.entityToUpgrade.Upgrade();
-            selectedUpgrade = null;
-            selectedEntity = newEntity;
+        selectedUpgrade.entityToUpgrade.Upgrade(newEntity);
+        selectedUpgrade = null;
+        selectedEntity = newEntity;
 
-            DisplayUpgradeTree(newEntity);
-        }
-        else
-        {
-
-        }
+        DisplayUpgradeTree(newEntity);
+        
     }
     private void Sell()
     {
@@ -243,6 +329,12 @@ public class InterfaceManager : MonoBehaviour
             Destroy(currentPreview.gameObject);
         }
         GameManager.instance.tilePlacement = false;
+    }
+    
+    public void AddAbilityCard(AbilityCard abilityCard)
+    {
+        GameObject card = Instantiate(abilityCard.gameObject, abilityCardRow.transform);
+        card.transform.localScale = Vector3.one;
     }
 
 }

@@ -11,6 +11,7 @@ public class Hazard : Entity
 
     public override EntityType entityType => throw new NotImplementedException();
 
+
     public virtual void Engage()
     {
         

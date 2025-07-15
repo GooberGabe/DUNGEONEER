@@ -19,12 +19,13 @@ public class Wave
 
 public class LevelReader : MonoBehaviour
 {
-    public List<TextAsset> levelData;
+    public Level level;
     private Dictionary<string, GameObject> jsonKey = new Dictionary<string, GameObject>();
 
     public LevelWaves Read(StartModule start)
     {
-        TextAsset json = levelData[GameManager.instance.GetGrid().startModules.IndexOf(start)];
+        List<TextAsset> data = level.WaveData;
+        TextAsset json = data[GameManager.instance.GetGrid().startModules.IndexOf(start)];
         string jsonString = json.ToString();
         LevelWaves wavesTxt = JsonUtility.FromJson<LevelWaves>(jsonString);
 
