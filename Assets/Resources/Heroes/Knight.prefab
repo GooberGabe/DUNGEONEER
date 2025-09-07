@@ -579,7 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f0fb040e3f6e745b19019daf3601ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 044a32119ebb0464fbd99d4115ee81fd, type: 3}
   description: 
   hitPoints: 30
   maxHitPoints: 30

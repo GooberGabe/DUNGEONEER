@@ -136,6 +136,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: 48a9d9e355ee8e24aae70ba3d96e01d2, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d24c56fa321fdf543843fbc7cb0c399d, type: 2}
+    - target: {fileID: 1630794972795428178, guid: 48a9d9e355ee8e24aae70ba3d96e01d2, type: 3}
+      propertyPath: 'm_Materials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4524c46d71a555e44a76c5e6a6d78dec, type: 2}
     - target: {fileID: 2167859532812503047, guid: 48a9d9e355ee8e24aae70ba3d96e01d2, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -263,14 +271,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f0fb040e3f6e745b19019daf3601ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 016a1888b93183743bc50316c149ac40, type: 3}
+  description: 
   hitPoints: 20
   maxHitPoints: 20
   entityName: Rogue
   upgradeName: 
   cost: 15
+  invisible: 0
   detectedTypes: 
+  rangeColliders: []
   upgradeTree: {fileID: 0}
   mainDestination: {fileID: 0}
+  detectInvisibility: 0
   targetClose: 1
   holdPosition: {fileID: 0}
   firePosition:
@@ -282,7 +295,6 @@ MonoBehaviour:
   size: 0
   behavior: 0
   subDestination: {fileID: 0}
-  isAlive: 1
   isMoving: 0
   foes: []
 --- !u!195 &2034823553608676214

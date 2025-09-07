@@ -120,7 +120,8 @@ public class Creature : DynamicEntity
     {
         return maxHitPoints.ToString() + " HP" +
                "\nDamage: " + GetDamage() +
-               "\nSpeed:  " + speed.ToString();
+               "\nSpeed:  " + speed.ToString() +
+               description != "" ? "\n" + description : "";
     }
 
     public override string StatusDisplay()

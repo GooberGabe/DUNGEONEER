@@ -353,6 +353,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1630794972795428178, guid: ae857b147661ec74bbbd75e51b7e2e9a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d24c56fa321fdf543843fbc7cb0c399d, type: 2}
+    - target: {fileID: 1630794972795428178, guid: ae857b147661ec74bbbd75e51b7e2e9a, type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
       objectReference: {fileID: 7968186905521774943, guid: 0757de2c194fe8842bcb92f7bda0fa9f, type: 3}
@@ -360,6 +364,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[3]'
       value: 
       objectReference: {fileID: 1566755324555150303, guid: 0757de2c194fe8842bcb92f7bda0fa9f, type: 3}
+    - target: {fileID: 1630794972795428178, guid: ae857b147661ec74bbbd75e51b7e2e9a, type: 3}
+      propertyPath: 'm_Materials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4524c46d71a555e44a76c5e6a6d78dec, type: 2}
     - target: {fileID: 1630794972795428178, guid: ae857b147661ec74bbbd75e51b7e2e9a, type: 3}
       propertyPath: 'm_Materials.Array.data[5]'
       value: 
@@ -586,14 +594,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f0fb040e3f6e745b19019daf3601ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 364d2d4358f782f458cd7afe104d590a, type: 3}
+  description: 
   hitPoints: 10
   maxHitPoints: 10
   entityName: Guard
   upgradeName: 
   cost: 10
+  invisible: 0
   detectedTypes: 
+  rangeColliders: []
   upgradeTree: {fileID: 0}
   mainDestination: {fileID: 0}
+  detectInvisibility: 0
   targetClose: 1
   holdPosition: {fileID: 0}
   firePosition:
@@ -605,7 +618,6 @@ MonoBehaviour:
   size: 0
   behavior: 0
   subDestination: {fileID: 0}
-  isAlive: 1
   isMoving: 0
   foes: []
 --- !u!195 &8255141283299227553

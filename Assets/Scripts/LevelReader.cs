@@ -21,6 +21,7 @@ public class LevelReader : MonoBehaviour
 {
     public Level level;
     private Dictionary<string, GameObject> jsonKey = new Dictionary<string, GameObject>();
+    public List<LevelWaves> allWaves;
 
     public LevelWaves Read(StartModule start)
     {
@@ -28,6 +29,7 @@ public class LevelReader : MonoBehaviour
         TextAsset json = data[GameManager.instance.GetGrid().startModules.IndexOf(start)];
         string jsonString = json.ToString();
         LevelWaves wavesTxt = JsonUtility.FromJson<LevelWaves>(jsonString);
+        allWaves.Add(wavesTxt);
 
         return wavesTxt;
     }
@@ -54,6 +56,28 @@ public class LevelReader : MonoBehaviour
         }
 
         return waves;
+    }
+
+    public Hero GetHeroByName(string name)
+    {
+        return jsonKey[name].GetComponent<Hero>();
+    }
+
+    public HashSet<string> NewHeroes (int round, HashSet<string> encounteredHeroes)
+    {
+        HashSet<string> newHeroes = new HashSet<string>();
+        foreach(LevelWaves startingPosition in allWaves)
+        {
+            Wave wave = startingPosition.waves[round];
+            foreach(string hero in wave.heroes)
+            {
+                if (!encounteredHeroes.Contains(hero))
+                {
+                    newHeroes.Add(hero);
+                }
+            }
+        }
+        return newHeroes;
     }
 }
 

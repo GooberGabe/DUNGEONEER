@@ -28,6 +28,7 @@ abstract public class Module : MonoBehaviour
         if (hazard != null)
         {
             Destroy(hazard.gameObject);
+            GameManager.instance.gold += hazard.cost;
             hazard = null;
         }
         gridTile.module = null;

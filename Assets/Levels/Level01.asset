@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level01
   m_EditorClassIdentifier: 
   waveData:
-  - {fileID: 4900000, guid: 88952599f2e76b0409d4716eb61d29d4, type: 3}
+  - {fileID: 4900000, guid: 29a7bed02719add46b097ab0144fef42, type: 3}
   startPositions:
   - {x: 6, y: 6}
   endPosition: {x: 14, y: 14}

@@ -50,6 +50,7 @@ public class InterfaceManager : MonoBehaviour
     public Sprite redButton;
     public Sprite greenButton;
     public GameObject buildButtonPrefab;
+    public GameObject heroPreviewPrefab;
 
     private List<UpgradeTier> tiers = new List<UpgradeTier>();
 
@@ -156,6 +157,12 @@ public class InterfaceManager : MonoBehaviour
         // -- Play Button
         playRoundButton.interactable = GameManager.instance.isValidPath;
 
+    }
+
+    public void CreateHeroPreviewPanel(Hero hero)
+    {
+        PreviewPanel panel = Instantiate(heroPreviewPrefab,transform).GetComponent<PreviewPanel>();
+        panel.SetHero(hero);
     }
 
     public void DisplayRoomModules()

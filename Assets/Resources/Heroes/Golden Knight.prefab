@@ -385,14 +385,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f0fb040e3f6e745b19019daf3601ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: a9a00ad2c94aaa5488046d6b58cf7fff, type: 3}
+  description: 
   hitPoints: 100
   maxHitPoints: 100
   entityName: Golden Knight
   upgradeName: 
   cost: 30
+  invisible: 0
   detectedTypes: 
+  rangeColliders: []
   upgradeTree: {fileID: 0}
   mainDestination: {fileID: 0}
+  detectInvisibility: 0
   targetClose: 1
   holdPosition: {fileID: 0}
   firePosition:
@@ -404,7 +409,6 @@ MonoBehaviour:
   size: 0
   behavior: 0
   subDestination: {fileID: 0}
-  isAlive: 1
   isMoving: 0
   foes: []
 --- !u!195 &213244657868524330

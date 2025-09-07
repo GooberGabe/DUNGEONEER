@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEngine.UI.Image;
 
 public class StartModule : FlexModule
 {
@@ -98,6 +97,7 @@ public class StartModule : FlexModule
 
         //hero.targetDestination = GameManager.instance.GetGrid().endModule.transform;          // Un-comment when EndModule is implemented fully
         hero.mainDestination = GameManager.instance.GetGrid().endModule.dragonRef.transform;
+        GameManager.instance.encounteredHeroes.Add(hero.entityName);
     }
 
     private void SpawnPathfinder()

@@ -64,6 +64,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizard
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: c972d9dfc1388d04cb3191476e02d8ab, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d24c56fa321fdf543843fbc7cb0c399d, type: 2}
+    - target: {fileID: 1630794972795428178, guid: c972d9dfc1388d04cb3191476e02d8ab, type: 3}
+      propertyPath: 'm_Materials.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4524c46d71a555e44a76c5e6a6d78dec, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -201,8 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c4d718a6bcacb49b4d4c2a0b165c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  description: 
+  icon: {fileID: 21300000, guid: 815d500c9fc769848861ab5666595875, type: 3}
+  description: Immune to most status effects. Summons ranged projectiles.
   hitPoints: 70
   maxHitPoints: 70
   entityName: Wizard

@@ -136,6 +136,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: 9600c711943e2134d9b1964053a3d6f5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d24c56fa321fdf543843fbc7cb0c399d, type: 2}
+    - target: {fileID: 1630794972795428178, guid: 9600c711943e2134d9b1964053a3d6f5, type: 3}
+      propertyPath: 'm_Materials.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4524c46d71a555e44a76c5e6a6d78dec, type: 2}
     - target: {fileID: 2167859532812503047, guid: 9600c711943e2134d9b1964053a3d6f5, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -226,6 +234,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9600c711943e2134d9b1964053a3d6f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7849322073812024055}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9600c711943e2134d9b1964053a3d6f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4863323351421059686}
   m_SourcePrefab: {fileID: 100100000, guid: 9600c711943e2134d9b1964053a3d6f5, type: 3}
 --- !u!1 &7334453788634116363 stripped
 GameObject:
@@ -338,17 +349,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a507b0e12467f4f8a63f606211871d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  description: 
+  icon: {fileID: 21300000, guid: 96042b661fc408c4fb83c3ff0b5a9376, type: 3}
+  description: Heals nearby Heroes.
   hitPoints: 50
   maxHitPoints: 50
   entityName: Cleric
   upgradeName: 
   cost: 20
+  invisible: 0
   detectedTypes: 03000000
   rangeColliders: []
   upgradeTree: {fileID: 0}
   mainDestination: {fileID: 0}
+  detectInvisibility: 0
   targetClose: 1
   holdPosition: {fileID: 0}
   firePosition: []
@@ -384,3 +397,20 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4863323351421059686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7334453788634116363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5518fd2b4474c4ebb97d42bd1621c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionSpeed: 0.035
+  hiddenPos: {x: -140, y: 0}
+  shownPos: {x: 0, y: 0}
+  infoText: {fileID: 0}
+  nameText: {fileID: 0}

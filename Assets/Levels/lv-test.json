@@ -1,0 +1,247 @@
+{
+    "waves":
+    [
+        {
+            "spawnRate":4,
+            "heroes":
+            [
+                "Guard"
+            ]
+        },
+        {
+            "spawnRate":4,
+            "heroes":
+            [
+                "Guard","Guard","Guard","Knight","Guard","Guard","Knight","Guard","Guard","Knight"
+            ]
+        },
+        {
+            "spawnRate":5,
+            "heroes":
+            [
+                "Guard","Guard","Rogue","Guard","Guard","Rogue","Guard","Guard","Rogue","Knight","Rogue","Knight","Rogue"
+            ]
+        },
+        {
+            "spawnRate":5,
+            "heroes":
+            [
+                "Knight","Rogue","Guard","Knight","Rogue","Guard","Knight","Knight","Knight","Knight","Rogue","Guard","Knight","Rogue"
+            ]
+        },
+        {
+            "spawnRate":5,
+            "heroes":
+            [
+                "Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Rogue","Guard","Barbarian"
+            ]
+        },
+        {
+            "spawnRate": 6,
+            "heroes": [
+              "Rogue", "Guard", "Knight", "Rogue", "Guard",
+              "Knight", "Rogue", "Knight", "Guard", "Rogue",
+              "Knight", "Barbarian", "Guard", "Guard", "Guard",
+              "Guard", "Guard", "Barbarian", "Guard", "Guard",
+              "Guard", "Guard", "Guard", "Barbarian", "Knight",
+              "Barbarian", "Knight", "Barbarian", "Knight", "Golden Knight"
+            ]
+        },
+        {
+            "spawnRate": 6,
+            "heroes": [
+              "Knight", "Rogue", "Barbarian", "Knight", "Rogue",
+              "Barbarian", "Knight", "Rogue", "Barbarian", "Knight",
+              "Barbarian", "Rogue", "Knight", "Barbarian", "Rogue",
+              "Knight", "Barbarian", "Rogue", "Barbarian", "Knight",
+              "Rogue", "Barbarian", "Knight", "Barbarian", "Barbarian",
+              "Knight", "Rogue", "Barbarian", "Barbarian", "Barbarian",
+              "Knight", "Rogue", "Barbarian", "Barbarian", "Golden Knight"
+            ]
+        },
+        {
+            "spawnRate": 9,
+            "heroes": [
+              "Knight", "Knight", "Barbarian", "Knight", "Knight",
+              "Barbarian", "Knight", "Knight", "Barbarian","Knight", "Knight", "Barbarian", 
+              "Knight", "Knight", "Barbarian", "Knight", "Knight", "Barbarian",
+              "Knight", "Knight", "Knight", "Knight", "Knight",
+              "Knight", "Knight", "Knight", "Barbarian", "Knight",
+              "Knight", "Barbarian", "Barbarian", "Barbarian", "Barbarian",
+              "Barbarian", "Barbarian", "Barbarian", "Barbarian", "Golden Knight"
+            ]
+        },
+        {
+            "spawnRate": 7,
+            "heroes": [
+              "Rogue", "Knight", "Rogue", "Knight", "Rogue",
+              "Cleric", "Barbarian", "Barbarian", "Barbarian", "Barbarian",
+              "Golden Knight", "Rogue", "Barbarian", "Rogue", "Golden Knight",
+              "Barbarian", "Cleric", "Barbarian", "Golden Knight", "Barbarian",
+              "Knight", "Golden Knight", "Barbarian", "Rogue", "Golden Knight",
+              "Barbarian", "Rogue", "Barbarian", "Barbarian", "Rogue",
+              "Knight", "Golden Knight", "Barbarian", "Golden Knight", "Golden Knight",
+              "Barbarian", "Cleric", "Golden Knight"
+            ]
+        },
+        {
+            "spawnRate": 7,
+            "heroes": [
+              "Barbarian", "Knight", "Rogue", "Barbarian", "Knight",
+              "Golden Knight", "Barbarian", "Rogue", "Knight", "Barbarian",
+              "Barbarian", "Rogue", "Barbarian", "Knight", "Golden Knight",
+              "Barbarian", "Cleric", "Knight", "Golden Knight", "Barbarian",
+              "Knight", "Golden Knight", "Barbarian", "Rogue", "Golden Knight",
+              "Barbarian", "Cleric", "Golden Knight", "Barbarian", "Golden Knight",
+              "Knight", "Golden Knight", "Barbarian", "Golden Knight", "Golden Knight",
+              "Barbarian", "Cleric", "Golden Knight", "Golden Knight", "Golden Knight",
+              "Wizard"
+            ]
+          },
+        
+        {
+            "spawnRate": 8,
+            "heroes": [
+                "Golden Knight", "Barbarian", "Golden Knight", "Barbarian", "Golden Knight",
+                "Cleric", "Barbarian", "Golden Knight", "Barbarian", "Golden Knight",
+                "Barbarian", "Cleric", "Golden Knight", "Barbarian", "Golden Knight",
+                "Barbarian", "Golden Knight", "Cleric", "Barbarian", "Golden Knight",
+                "Wizard", "Golden Knight", "Barbarian", "Golden Knight", "Wizard",
+                "Barbarian", "Golden Knight", "Cleric", "Golden Knight", "Barbarian",
+                "Golden Knight", "Wizard", "Golden Knight", "Barbarian", "Golden Knight",
+                "Cleric", "Golden Knight", "Wizard", "Golden Knight"
+            ]
+        },
+        {
+            "spawnRate": 7,
+            "heroes": [
+                "Ninja", "Rogue", "Knight", "Ninja", "Barbarian",
+                "Golden Knight", "Ninja", "Rogue", "Barbarian", "Ninja",
+                "Knight", "Golden Knight", "Ninja", "Barbarian", "Rogue",
+                "Ninja", "Cleric", "Golden Knight", "Ninja", "Barbarian",
+                "Knight", "Ninja", "Golden Knight", "Barbarian", "Ninja",
+                "Rogue", "Cleric", "Ninja", "Golden Knight", "Barbarian",
+                "Ninja", "Wizard", "Golden Knight", "Ninja", "Barbarian",
+                "Golden Knight", "Ninja", "Wizard", "Golden Knight", "Ninja"
+            ]
+        },
+        {
+            "spawnRate": 8,
+            "heroes": [
+                "Barbarian", "Ninja", "Golden Knight", "Barbarian", "Ninja",
+                "Golden Knight", "Wizard", "Barbarian", "Ninja", "Golden Knight",
+                "Barbarian", "Ninja", "Cleric", "Golden Knight", "Barbarian",
+                "Ninja", "Golden Knight", "Wizard", "Barbarian", "Ninja",
+                "Golden Knight", "Barbarian", "Ninja", "Golden Knight", "Cleric",
+                "Barbarian", "Ninja", "Golden Knight", "Wizard", "Barbarian",
+                "Ninja", "Golden Knight", "Barbarian", "Ninja", "Golden Knight",
+                "Wizard", "Barbarian", "Ninja", "Golden Knight", "Barbarian",
+                "Ninja", "Golden Knight", "Wizard"
+            ]
+        },
+        {
+            "spawnRate": 8,
+            "heroes": [
+                "Wizard", "Golden Knight", "Ninja", "Wizard", "Golden Knight",
+                "Barbarian", "Ninja", "Wizard", "Golden Knight", "Barbarian",
+                "Ninja", "Wizard", "Cleric", "Golden Knight", "Barbarian",
+                "Ninja", "Wizard", "Golden Knight", "Barbarian", "Ninja",
+                "Wizard", "Golden Knight", "Cleric", "Barbarian", "Ninja",
+                "Wizard", "Golden Knight", "Barbarian", "Ninja", "Wizard",
+                "Golden Knight", "Barbarian", "Ninja", "Wizard", "Golden Knight",
+                "Cleric", "Barbarian", "Ninja", "Wizard", "Golden Knight",
+                "Barbarian", "Ninja", "Wizard", "Golden Knight", "Wizard"
+            ]
+        },
+        {
+            "spawnRate": 8,
+            "heroes": [
+                "Juggernaut", "Golden Knight", "Wizard", "Barbarian", "Ninja",
+                "Golden Knight", "Wizard", "Barbarian", "Ninja", "Golden Knight",
+                "Cleric", "Barbarian", "Ninja", "Golden Knight", "Wizard",
+                "Barbarian", "Ninja", "Golden Knight", "Wizard", "Barbarian",
+                "Ninja", "Golden Knight", "Cleric", "Wizard", "Barbarian",
+                "Ninja", "Golden Knight", "Wizard", "Barbarian", "Ninja",
+                "Golden Knight", "Wizard", "Barbarian", "Ninja", "Golden Knight",
+                "Cleric", "Wizard", "Barbarian", "Ninja", "Golden Knight",
+                "Wizard", "Barbarian", "Ninja", "Juggernaut"
+            ]
+        },
+        {
+            "spawnRate": 7,
+            "heroes": [
+                "Ninja", "Ninja", "Ninja", "Rogue", "Ninja",
+                "Ninja", "Ninja", "Barbarian", "Ninja", "Ninja",
+                "Ninja", "Golden Knight", "Ninja", "Ninja", "Ninja",
+                "Wizard", "Ninja", "Ninja", "Ninja", "Cleric",
+                "Ninja", "Ninja", "Ninja", "Juggernaut", "Ninja",
+                "Ninja", "Ninja", "Golden Knight", "Ninja", "Ninja",
+                "Ninja", "Wizard", "Ninja", "Ninja", "Ninja",
+                "Barbarian", "Ninja", "Ninja", "Ninja", "Golden Knight",
+                "Ninja", "Ninja", "Ninja", "Juggernaut"
+            ]
+        },
+        {
+            "spawnRate": 8,
+            "heroes": [
+                "Golden Knight", "Juggernaut", "Wizard", "Golden Knight", "Barbarian",
+                "Ninja", "Golden Knight", "Juggernaut", "Wizard", "Golden Knight",
+                "Barbarian", "Ninja", "Cleric", "Juggernaut", "Wizard",
+                "Golden Knight", "Barbarian", "Ninja", "Golden Knight", "Juggernaut",
+                "Wizard", "Golden Knight", "Barbarian", "Ninja", "Cleric",
+                "Juggernaut", "Wizard", "Golden Knight", "Barbarian", "Ninja",
+                "Golden Knight", "Juggernaut", "Wizard", "Golden Knight", "Barbarian",
+                "Ninja", "Cleric", "Juggernaut", "Wizard", "Golden Knight",
+                "Barbarian", "Ninja", "Juggernaut", "Wizard", "Juggernaut"
+            ]
+        },
+        {
+            "spawnRate": 9,
+            "heroes": [
+                "Wizard", "Wizard", "Golden Knight", "Wizard", "Wizard",
+                "Juggernaut", "Wizard", "Wizard", "Golden Knight", "Wizard",
+                "Wizard", "Barbarian", "Ninja", "Wizard", "Wizard",
+                "Golden Knight", "Cleric", "Wizard", "Wizard", "Juggernaut",
+                "Wizard", "Wizard", "Golden Knight", "Wizard", "Wizard",
+                "Barbarian", "Ninja", "Wizard", "Wizard", "Golden Knight",
+                "Wizard", "Wizard", "Juggernaut", "Wizard", "Wizard",
+                "Golden Knight", "Cleric", "Wizard", "Wizard", "Barbarian",
+                "Ninja", "Wizard", "Wizard", "Juggernaut", "Wizard",
+                "Wizard", "Golden Knight", "Wizard", "Wizard"
+            ]
+        },
+        {
+            "spawnRate": 8,
+            "heroes": [
+                "Juggernaut", "Ninja", "Wizard", "Juggernaut", "Ninja",
+                "Golden Knight", "Juggernaut", "Ninja", "Wizard", "Juggernaut",
+                "Ninja", "Golden Knight", "Cleric", "Juggernaut", "Ninja",
+                "Wizard", "Juggernaut", "Ninja", "Golden Knight", "Juggernaut",
+                "Ninja", "Wizard", "Juggernaut", "Ninja", "Golden Knight",
+                "Cleric", "Juggernaut", "Ninja", "Wizard", "Juggernaut",
+                "Ninja", "Golden Knight", "Juggernaut", "Ninja", "Wizard",
+                "Juggernaut", "Ninja", "Golden Knight", "Cleric", "Juggernaut",
+                "Ninja", "Wizard", "Juggernaut", "Ninja", "Golden Knight",
+                "Juggernaut", "Ninja", "Wizard", "Juggernaut"
+            ]
+        },
+        {
+            "spawnRate": 9,
+            "heroes": [
+                "Juggernaut", "Juggernaut", "Wizard", "Golden Knight", "Juggernaut",
+                "Juggernaut", "Ninja", "Wizard", "Golden Knight", "Juggernaut",
+                "Juggernaut", "Barbarian", "Cleric", "Wizard", "Juggernaut",
+                "Juggernaut", "Golden Knight", "Ninja", "Wizard", "Juggernaut",
+                "Juggernaut", "Barbarian", "Golden Knight", "Cleric", "Juggernaut",
+                "Juggernaut", "Wizard", "Ninja", "Golden Knight", "Juggernaut",
+                "Juggernaut", "Barbarian", "Wizard", "Golden Knight", "Juggernaut",
+                "Juggernaut", "Ninja", "Cleric", "Wizard", "Juggernaut",
+                "Juggernaut", "Golden Knight", "Barbarian", "Wizard", "Juggernaut",
+                "Juggernaut", "Ninja", "Golden Knight", "Juggernaut", "Juggernaut",
+                "Wizard", "Juggernaut", "Juggernaut", "Juggernaut"
+            ]
+        }
+    
+        
+    ]
+}

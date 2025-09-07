@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private List<AbilityCard> abilities;
     private bool requestBakeNavMesh = false;
 
+    public HashSet<string> encounteredHeroes = new HashSet<string>();
+
     public int round { get { return grid.startModules[0].GetRound() + 1; } }
 
     private void Awake()
@@ -55,10 +57,28 @@ public class GameManager : MonoBehaviour
         }
         if (allHeroesSpawned && totalHeroes == 0 && playRound)
         {
-            playRound = false;
-            InterfaceManager.instance.Message("Round Completed!", 240);
-            gold += 50;
+            HandleNewRound();
         }
+    }
+
+    private void HandleNewRound()
+    {
+        playRound = false;
+        
+        InterfaceManager.instance.Message("Round Completed!", 230);
+        LevelReader reader = GetComponent<LevelReader>();
+        foreach (string hero in reader.NewHeroes(round, encounteredHeroes))
+        {
+            StartCoroutine(CreateHeroPreviewPanel(hero));
+        }
+    
+        gold += 50;
+    }
+
+    public IEnumerator CreateHeroPreviewPanel(string hero)
+    {
+        yield return new WaitForSeconds(4);
+        InterfaceManager.instance.CreateHeroPreviewPanel(reader.GetHeroByName(hero));
     }
 
     private void LateUpdate()
