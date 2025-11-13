@@ -60,7 +60,7 @@
             ]
         },
         {
-            "spawnRate": 9,
+            "spawnRate": 8,
             "heroes": [
               "Knight", "Knight", "Barbarian", "Knight", "Knight",
               "Barbarian", "Knight", "Knight", "Barbarian","Knight", "Knight", "Barbarian", 

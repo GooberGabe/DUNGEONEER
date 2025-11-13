@@ -56,6 +56,7 @@ MonoBehaviour:
   entityName: Bear Trap
   upgradeName: 
   cost: 30
+  invisible: 0
   detectedTypes: 03000000
   rangeColliders: []
   upgradeTree: {fileID: 11400000, guid: 552ac4309b374fd49a5aaca6ff0fb91b, type: 2}
@@ -329,6 +330,10 @@ PrefabInstance:
       propertyPath: damage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5034375846255729551, guid: 544a22cb987f2514e8730f1086ca7f58, type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 6701094738149623620}
     - target: {fileID: 5034375846255729551, guid: 544a22cb987f2514e8730f1086ca7f58, type: 3}
       propertyPath: counter
       value: -99

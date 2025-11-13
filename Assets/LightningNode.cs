@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
-using static UnityEngine.GraphicsBuffer;
 
 public class LightningNode : EffectZone
 {
@@ -59,6 +57,7 @@ public class LightningNode : EffectZone
         lightning.origin = target;
         Vector3 endpoint = target.transform.position + (target.transform.forward * 0.25f);
         lightningEffect.endObject.position = new Vector3(endpoint.x, lightningEffect.endObject.position.y, endpoint.z);
+        lightning.source = source;
     }
 
     public override bool DealDamage(int amount)

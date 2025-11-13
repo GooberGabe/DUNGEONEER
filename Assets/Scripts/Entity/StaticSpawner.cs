@@ -63,6 +63,10 @@ public class StaticSpawner : Spawner
 
                 Entity g = GameManager.instance.Spawn(creatureToSpawn, pos);
                 monsters.Add(g);
+                if (g.entityType == EntityType.Zone)
+                {
+                    ((EffectZone)g).source = this;
+                }
             }
         }
         GetComponentInChildren<Animator>()?.SetTrigger("engaged");

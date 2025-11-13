@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.AI;
+using static Unity.VisualScripting.Member;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.GraphicsBuffer;
 
 public class Creature : DynamicEntity
@@ -118,10 +120,11 @@ public class Creature : DynamicEntity
 
     public override string TextDisplay()
     {
+        Debug.Log("DISPLAY INFO: "+description+","+maxHitPoints);
         return maxHitPoints.ToString() + " HP" +
                "\nDamage: " + GetDamage() +
                "\nSpeed:  " + speed.ToString() +
-               description != "" ? "\n" + description : "";
+               (description != "" ? ("\n" + description) : "");
     }
 
     public override string StatusDisplay()
@@ -230,7 +233,9 @@ public class Creature : DynamicEntity
             Entity target = GetTarget().GetComponent<Entity>();
             if (target != null)
             {
+                HitLogger.LogHit(this, target, strength);
                 target.TakeDamage(strength);
+                
                 if (target.entityType == EntityType.Hero || target.entityType == EntityType.Monster)
                 {
                     ((Creature)target).OnAttacked(this);

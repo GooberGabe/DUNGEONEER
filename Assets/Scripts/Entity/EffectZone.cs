@@ -15,6 +15,7 @@ public class EffectZone : Entity
     public bool destroyObject = true;
     public StatusEffect[] statusEffects;
     public float effectDuration = 0;
+    public Entity source;
 
     // Other possible effects: Knockback, status effect, etc
 
@@ -52,6 +53,7 @@ public class EffectZone : Entity
             Debug.Log("--B: Detect Entity");
             if (entity != null)
             {
+                HitLogger.LogHit(this, entity, damage);
                 if (damage > 0) entity.TakeDamage(amount);
                 HandleStatusEffects(entity);
                 ret = true;

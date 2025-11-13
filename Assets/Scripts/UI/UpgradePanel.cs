@@ -11,6 +11,7 @@ public class UpgradePanel : SlidePanel
     public TextMeshProUGUI details;
     public Button sellButton;
     public GameObject upgradeContent;
+    public TextMeshProUGUI debugText;
     
 }
 

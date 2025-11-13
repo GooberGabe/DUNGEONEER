@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using TreeEditor;
 
 [CreateAssetMenu(fileName = "New Upgrade Tree", menuName = "Upgrades/UpgradeTree")]
 public class UpgradeTree : ScriptableObject

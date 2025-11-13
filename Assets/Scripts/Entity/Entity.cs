@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
-using static UnityEditor.Experimental.GraphView.Port;
 
 public abstract class Entity : MonoBehaviour
 {
@@ -30,6 +26,24 @@ public abstract class Entity : MonoBehaviour
     protected Transform anchorPoint;
 
     private OpacityController opacityController;
+
+    private float totalLoggedDamage;
+    private int totalLoggedKills;
+
+    public void LOG_HIT(float damage)
+    {
+        totalLoggedDamage += damage;
+    }
+
+    public void LOG_KILL()
+    {
+        totalLoggedKills++;
+    }
+
+    public string GET_LOGGED_INFO()
+    {
+        return "<<debug>>"+"\ntotalDamage: " + totalLoggedDamage + "\ntotalKills: " + totalLoggedKills;
+    }
 
     protected virtual void Start()
     {
@@ -55,7 +69,6 @@ public abstract class Entity : MonoBehaviour
             
         }
 
-        
 
         if (invisible)
         {
@@ -280,4 +293,27 @@ public enum Size
     Small,
     Medium,
     Large
+}
+
+class HitLogger
+{
+
+    public static void LogHit(Entity source, Entity entity, float damage)
+    {
+        if (damage >= entity.hitPoints && entity.IsAlive()) source.LOG_KILL();
+        source.LOG_HIT(damage);
+
+        if (source.entityType == EntityType.Zone) 
+        {
+            Entity origin = ((EffectZone)source).source;
+            if (origin) LogHit(origin, entity, damage);
+        }
+
+        if (source.entityType == EntityType.Monster)
+        {
+            Entity origin = ((Monster)source).spawnOrigin;
+            if (origin) LogHit(origin, entity, damage);
+        }
+
+    }
 }

@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using UnityEditor.Rendering;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,6 +56,12 @@ public class GameManager : MonoBehaviour
         {
             HandleNewRound();
         }
+    }
+
+    public void QuitApplication()
+    {
+        Application.Quit();
+        Debug.Log("Application has quit."); // This will only show in the console if the editor is still open after the build has quit
     }
 
     private void HandleNewRound()

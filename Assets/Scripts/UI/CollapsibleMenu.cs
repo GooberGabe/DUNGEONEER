@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Android;
-using UnityEngine.UI;
 
 public class CollapsibleMenu : MonoBehaviour
 {

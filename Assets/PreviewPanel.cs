@@ -19,7 +19,7 @@ public class PreviewPanel : SlidePanel
     {
         focusHero = hero;
         nameText.text = focusHero.name;
-        infoText.text = "Test"; // focusHero.TextDisplay();
+        infoText.text = focusHero.TextDisplay();
         icon.sprite = focusHero.icon;
 
         Show();

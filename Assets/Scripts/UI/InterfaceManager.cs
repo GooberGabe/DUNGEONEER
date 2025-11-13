@@ -1,12 +1,8 @@
-using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -109,6 +105,8 @@ public class InterfaceManager : MonoBehaviour
             {
                 priorityDropdown.gameObject.SetActive(false);
             }
+
+            leftPanel.debugText.text = selectedEntity.GET_LOGGED_INFO();
 
 
             if (selectedUpgrade == null)

@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Projectile : MonoBehaviour
 {
@@ -56,6 +54,7 @@ public class Projectile : MonoBehaviour
     protected void DealDamage(Entity entity)
     {
         Debug.Log("C");
+        HitLogger.LogHit(source, entity, damage);
         entity.TakeDamage(damage);
         if (knockback > 0)
         {
@@ -159,6 +158,7 @@ public class Projectile : MonoBehaviour
             {
                 Transform fx = Instantiate(afterEffect, effectOrigin.transform.position, Quaternion.identity).transform;
                 fx.transform.eulerAngles = Vector3.zero;
+                SetFXSource(fx);
             }
         }   
         Delete();
@@ -169,9 +169,22 @@ public class Projectile : MonoBehaviour
         if (isAlive) DealDamage(entity);
         foreach (GameObject afterEffect in afterEffects)
         {
-            Instantiate(afterEffect, effectOrigin.transform.position, Quaternion.identity);
+            GameObject fx = Instantiate(afterEffect, effectOrigin.transform.position, Quaternion.identity);
+            SetFXSource(fx.transform);
         }
         Delete();
+    }
+
+    private void SetFXSource(Transform fx)
+    {
+        Entity e = fx.GetComponent<Entity>();
+        if (e)
+        {
+            if (e.entityType == EntityType.Zone)
+            {
+                ((EffectZone)e).source = source;
+            }
+        }
     }
 
     public void Delete()
